@@ -1,0 +1,24 @@
+#navbar
+{
+   background-color: black ;
+   color : white ;
+   height : 50px ; 
+}
+#logo
+{
+   text-align: center;
+   color :orange ; 
+   width : 20px ; 
+   height : 50px ; 
+   padding-top : 15px ; 
+   margin-left: 10px ; 
+}
+.grp1
+{
+   margin-left:100px ; 
+   margin-right:100px ; 
+}
+#search
+{
+   margin-top:15px ; 
+}

@@ -1,0 +1,21 @@
+ div 
+{
+   height : 200px ; 
+   width : 200px ; 
+   background-color: brown;
+   border-width: 5px ;
+   border-style: double;
+   border-color: aqua;
+   border-radius : 60px ;
+   padding: 2%;
+   /*padding : top right bottom left */
+   margin: 15px ;
+   margin-top : 50px ; 
+}
+img
+{
+   height : 200px ; 
+   width : 200px ; 
+   padding: 2%;
+   margin: 15px ;
+}

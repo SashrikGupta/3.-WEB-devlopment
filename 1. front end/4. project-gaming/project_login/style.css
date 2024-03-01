@@ -1,0 +1,194 @@
+*
+{
+   margin:0 ;
+   padding : 0 ; 
+}
+body
+{
+   overflow: hidden; 
+}
+img
+{
+   position:absolute ; 
+   height:120vh ; 
+   width:100vw ;  
+   z-index: -10;
+   display:flex ; 
+   justify-content: center;
+   align-items: center;
+   
+}
+
+#container
+{
+   height : 90vh ;
+   width : 90vh ; 
+   margin:auto ; 
+   margin-top:0vh ; 
+   display:flex ; 
+   flex-direction:column ; 
+   justify-content: center;
+   align-items: center;
+   position : relative ; 
+}
+
+#head
+{
+   width:80% ; 
+   font-size:100px ; 
+   text-align: center;
+   color : white ; 
+   height:120px ;
+   margin : auto ; 
+}
+
+.liner
+{
+   width:80% ; 
+   
+   height:60px ;
+   margin : auto ; 
+}
+
+input,button
+{
+   width:100% ; 
+   height : 100% ; 
+   border-radius :2rem ; 
+   text-align: center ;
+   font-size : 24px ; 
+   background-color: rgba(250, 235, 215, 0);
+   color:white ; 
+}
+
+input::placeholder
+{
+   color : white 
+}
+
+button
+{
+   background: linear-gradient(45deg,rgba(128, 0, 128, 0.912),rgba(0, 0, 255, 0.344)) ;
+
+}
+
+#login
+{
+   position : absolute ; 
+   height : 58% ; 
+   width: 60%; 
+   z-index: 1;
+   display : flex ; 
+   flex-direction: column;
+   justify-content: center;
+   
+   
+}
+
+#ring1
+{
+    position : absolute ; 
+    height : 80% ; 
+    width: 80%; 
+    border: 4px rgb(147, 213, 213) solid;
+    border-radius : 78% 77% 73% 38% / 68% 97% 83% 98% ;
+    box-shadow: 0 0 100px  rgb(22, 204, 204)  ; 
+    animation: clock 50s linear infinite ;
+}
+
+
+
+#ring2
+{
+    rotate: 25deg;
+    position : absolute ; 
+    height : 90% ; 
+    width: 90%; ; 
+    border: 4px rgb(3, 226, 255) solid;
+    border-radius: 51% 92% 57% 80% / 55% 90% 78% 65%;
+    box-shadow: 0 0 100px  rgb(22, 74, 204)  ; 
+    animation: counterclock 25s linear infinite ;
+}
+
+#ring3
+{
+    rotate: 65deg;
+    position : absolute ; 
+    height : 90% ; 
+    width: 90%; ; 
+    border: 4px rgb(0, 115, 255) solid;
+    border-radius: 85% 56% 91% 62% / 73% 52% 85% 91%;
+    box-shadow: 0 0 100px  rgb(50, 62, 93)  ; 
+    animation: clock 25s linear infinite ;
+}
+
+#ring4
+{
+    rotate: 82deg;
+    position : absolute ; 
+    height : 100% ; 
+    width: 100%; ; 
+    border: 4px rgb(0, 149, 255) solid;
+    border-radius: 59% 84% 50% 93% / 70% 82% 91% 54%;
+    box-shadow: 0 0 100px  rgb(182, 190, 197)  ;
+    animation: midclock 15s linear infinite ; 
+}
+
+#ring5
+{
+    
+    position : absolute ; 
+    height : 100% ; 
+    width: 100%; ; 
+    border: 4px aqua solid;
+    border-radius: 78% 51% 92% 65% / 89% 60% 74% 50%;
+    box-shadow: 0 0 100000px  rgb(16, 75, 226)  ; 
+    animation: counterclock 5s linear infinite ; 
+}
+
+@keyframes clock {
+
+   0%
+   {
+      transform:rotate(0deg) ; 
+   }
+
+   100%
+   {
+      transform: rotate(360deg);
+   }
+   
+}
+
+@keyframes counterclock {
+
+   0%
+   {
+      transform: rotate(360deg);
+   }
+
+   100%
+   {
+      transform:rotate(0deg) ; 
+   }
+   
+}
+
+@keyframes midclock {
+
+   0%
+   {
+      transform:rotate(0deg) ; 
+   }
+
+   50%
+   {
+      transform: rotate(180deg);
+   }
+
+   100%
+   {
+      transform: rotate(0deg);
+   }
+   
+}

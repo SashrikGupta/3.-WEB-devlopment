@@ -1,0 +1,46 @@
+body
+{
+   text-align : center ; 
+}
+div
+{
+   height : 50px ; 
+   width : 50px ; 
+   border : 2px solid black ; 
+   display : inline-block ; 
+}
+
+#container
+{
+   width : 800px ; 
+   height : 200px ;
+   display:flex ;
+   flex-direction:row ;
+   justify-content: space-around; /*main axis ke respective me  */
+   
+}
+
+#box1
+{
+   background-color: red;
+}
+
+#box2
+{
+   background-color: green;
+}
+
+#box3
+{
+   background-color: aqua;
+}
+
+#box4
+{
+   background-color: pink;
+}
+
+#box5
+{
+   background-color: brown ;
+}

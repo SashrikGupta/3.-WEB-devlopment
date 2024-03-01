@@ -1,0 +1,46 @@
+div
+{
+   display:inline-block ; 
+}
+
+#parent
+{
+   height : 200px ; 
+   width : 100px ; 
+   background-color: green;
+}
+
+#child
+{
+   height : 50px ;
+   width : 50% ; 
+   background-color: yellow; 
+   margin-left :10% ; 
+   margin-top : 20% ; 
+
+}
+
+#p1
+{
+   height : 200px ; 
+   width : 200px ; 
+   background-color: green;
+   font-size: 10px;
+}
+
+#c1
+{
+   height : 50px ;
+   width : 50% ; 
+   background-color: yellow; 
+   margin-left :10% ; 
+   margin-top : 20% ; 
+   font-size: 2em; 
+   /* 2 times of parents font size */
+   /* font --> parents font */
+   /* width--> itselfs font*/
+
+   width : 5em ; 
+    /* 5em = 5(font) = 5(2em) = 5(2(parents font)) = 5 * 2 * 10 = 100  */
+
+}

@@ -1,0 +1,30 @@
+body
+{
+   background-color: white ; 
+
+}
+#container
+{
+   background-color: rgba(0, 0, 0, 0.503);
+ 
+   display : flex ; 
+   flex-wrap: wrap;
+   justify-content: space-around ;
+   align-items: center ;
+   width : 80vw ; 
+   margin : auto ;
+
+
+}
+
+.box
+{
+   background-color : cyan ; 
+   height : 100px ; 
+   width : 100px ; 
+   margin : auto ;
+   border : 1px solid black ; 
+   text-align: center;
+   margin: 25px ;  
+   
+}

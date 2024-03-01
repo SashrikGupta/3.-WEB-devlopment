@@ -1,0 +1,533 @@
+<!------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   
+</head>
+
+<body>
+<!------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+   <style>
+      *
+{
+   margin : 0 ; 
+   padding : 0 ; 
+}
+body {
+   overflow-x: hidden;
+ }
+#nav
+{ 
+  display : flex ; 
+  justify-content: center ;
+  align-items: center ;
+  flex-wrap :wrap ; 
+  background-color: rgb(163, 12, 209);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align : center ;  
+  color : rgb(254, 225, 244) ; 
+  width : 100vw ; 
+  height : fit-content ; 
+  font-size: 47px;
+  margin : auto ; 
+  padding-top:6px ; 
+  padding-bottom: 6px ;
+}
+
+#instruct
+{
+   display : flex ; 
+   flex-wrap : wrap ; 
+   width : 45vw ;
+   justify-content: space-around ;
+   align-items: center ;
+   flex-direction: column;
+   gap : 0.5em ; 
+   background-color: rgba(209, 37, 228, 0.15);
+   box-shadow: 0 30px 40px rgba(209, 37, 228,.16);
+     
+
+}
+#outer
+{
+   margin-top : 50px ; 
+   display : flex ; 
+   flex-wrap : wrap ; 
+   justify-content: space-around;
+   flex-direction: row;
+}
+#wu
+{
+   display : inline-block ;
+   width : 35vw ; 
+}
+#wu:hover
+{
+ 
+   background-color: rgba(209, 37, 228, 0.4);
+   
+   display : inline-block ;
+   width : 35vw ; 
+}
+#im1
+{
+   width : 45vw ; 
+}
+
+@media(width >= 792px)
+{
+   #container
+   {
+      display : flex ; 
+      justify-content: center;
+      gap :10px ;
+      width : 40vw ;
+      margin:auto ; 
+      font-size: 60px ;
+   }
+
+   #max_outer
+   {
+      border : 2px black solid ; 
+      border-radius : 2rem  ; 
+      margin : 20px ; 
+      padding-top: 20px;
+
+   }
+ 
+   .homa
+   {
+     margin-right: 2.5%;  ; 
+   }
+   #message
+   {
+      font-size: 45px;
+      height : 60px ; 
+      padding-left:30px ;
+      padding-right:30px ;  
+      border-radius:1rem ; 
+      color : white ; 
+      background-color: darkslateblue;
+
+   }
+  
+      
+}
+@media(width<792px)
+{
+   #container
+   {
+      display : flex ; 
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center ;
+      gap :10px ;
+      width : 40vw ;
+      margin:auto ; 
+      font-size: 32px;
+   }
+
+   .homa-home
+   {
+      width : 100vw ; 
+      display:flex ; 
+      flex-direction:column ; 
+      flex-wrap :wrap ; 
+      justify-content: center;
+   }
+
+   .ok
+   {
+      width : 100vw ; 
+      font-size: 25px ;
+      margin:auto ; 
+      display:flex ; 
+      flex-direction:column ; 
+      flex-wrap :wrap ; 
+      justify-content: center;
+   }
+
+   #message
+   {
+      font-size: 25px;
+      font-weight: bolder;
+      text-align: center;
+      margin: auto ; 
+      height : 60px ; 
+      padding-left:30px ;
+      padding-right:30px ;  
+      border-radius:1rem ; 
+      color : white ; 
+      background-color: darkslateblue;
+
+   }
+
+   img
+   {
+      width: 0;
+      height: 0;
+   }
+
+   #instruct
+   {
+      width:100% ; 
+   }
+
+   #wu
+   {
+       width :80% ; 
+       margin:auto ; 
+   }
+
+   #wu:hover
+   {
+   
+      background-color: rgba(209, 37, 228, 0.4);
+      
+      display : inline-block ;
+      width : 80% ; 
+   }
+
+}
+
+
+.box
+{
+   border-radius: 50%;
+   height : 160px ;
+   width :160px ; 
+
+}
+.boxc
+{
+   border-radius: 50%;
+   height : 160px ;
+   width :160px ; 
+
+}
+#seprator
+{
+   width : 2px ; 
+   background-color: black;
+}
+
+#outer2
+{
+ 
+   width : 95vw ;
+   display : flex ;    
+   margin : auto  ; 
+   justify-content: center  ;
+   align-items: stretch ;    
+
+}
+
+#inner
+{
+   display : flex ; 
+   width : 40vw ;
+   flex-direction: column;
+   gap :10px ;
+   margin:auto ; 
+}
+#bt
+{
+   display : flex ; 
+   justify-content: center;
+}
+#card
+{
+    height : 160px ; 
+    width : 160px ; 
+    display : flex ;
+    flex-wrap : wrap ; 
+    flex-direction: column;
+    justify-content: space-around;
+  
+}
+#score
+{
+   width : 95vw ;
+   display : flex ;    
+   margin : auto  ; 
+   height :160px ; 
+   justify-content: center ;
+
+}
+
+
+#message1
+{
+   font-size: 45px;
+   height : 60px ; 
+   width: auto ; 
+   color:white ;
+   padding-left:30px ;
+   padding-right:30px ;  
+   border-radius:1rem ; 
+   background-color: darkslateblue;
+}
+
+#box1
+{
+   background-image: url("data:image/jpeg;base64,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") ; 
+   background-size: 100% 90%;
+}
+#box2
+{
+   background-image: url("https://5.imimg.com/data5/HC/KF/HZ/SELLER-4619430/white-art-paper.jpg");
+   background-size:  100% 90%;
+}
+#box3
+{
+   background-image: url("https://www.shutterstock.com/shutterstock/photos/337423679/display_1500/stock-vector-scissors-icon-337423679.jpg");
+   background-size:  100% 90%;
+}
+.box:hover {
+   cursor: pointer;
+   border: 6px black solid;
+ }
+
+
+
+   </style>
+   <div id = "nav" >ROCK PAPER SCISSORS</div>
+   <div id = "outer">
+      <div id="instruct">
+         <h1  style = " text-align : center ; "> INSTRUCTION </h1>
+         <div id = "wu" >Each player simultaneously forms one of three shapes with an open hand: <br> rock (a fist), paper (an open hand), or scissors (a fist with the index and middle fingers extended).</div>
+         <div id = "wu">Rock crushes scissors, scissors cuts paper, and paper covers rock, determining the winner of each round.</div>
+         <div id = "wu">The game is typically played in a best-of-three format, with players counting their wins to determine the overall winner.</div>
+         <div id = "wu">Make your choice quickly, and have fun competing in this simple yet classic hand game!</div>
+      </div>
+      <img id = "im1" src = "assets/ins.png">
+   </div>
+
+<!------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+   
+   <div id = "outer2" style = "height : 60px"></div>
+
+<!------------------------------------------------------------------------------------------------------------------------------------------------------------------->   
+   <div id = "max_outer" >
+
+<!--------------------------------------------------------------------------------------------------------------------------------->
+
+         <div id = "outer2" style = "height : 60px ; font-size: 45px; font-weight: bolder;"> 
+            <button id = "message1" class = "hola">
+               Let's play 
+            </button>
+         </div>
+         <div id = "outer2" style = "height : 65px"></div>
+         <div id = "outer2" style = "height : 60px">
+            <div id="container" > you </div>
+            <div id="seprator"></div>
+            <div id="container" > computer </div>
+         </div>
+         <div id = "outer2" style = "height : 20px"><div id="seprator"></div></div>
+
+<!--------------------------------------------------------------------------------------------------------------------------------->
+
+         <div id = "outer2">
+            <div id="inner">
+               <div id="container">
+                  <button type = "submit" id="box1" class = "box"></button>
+                  <button type = "submit" id="box2" class = "box"></button>
+                  <button type = "submit" id="box3" class = "box"></button>
+               </div>
+            </div>
+            <div id="seprator"></div>
+            <div id="inner">
+               <div id="container">
+                  <button type = "submit" id="box1" class = "boxc"></button>
+                  <button type = "submit" id="box2" class = "boxc"></button>
+                  <button type = "submit" id="box3" class = "boxc"></button>
+               </div>
+            </div>
+         </div>
+
+
+<!--------------------------------------------------------------------------------------------------------------------------------->
+
+         <div id = "outer2" style = "height : 60px"> <div id="seprator"></div> </div>
+         <div id = "score" style = "text-align: center;">
+            <div id = "container" style="margin:auto ; ">
+               <div id="card">
+                  <div id="mypoints" style="height:80px  ; width:160px ; font-size: 80px ;">0</div>
+                  <div id = "n" style="height:60px  ; width:160px ; font-size: 30px ; text-align: center; ">your score</div>
+               </div>
+            </div>
+            <div id="seprator"></div>
+            <div id = "container" style="margin:auto ; ">
+               <div id="card">
+                  <div id="cmpoints" style="height:80px  ; width:160px ; font-size: 80px;">0</div>
+                  <div id = "n" style="height:60px  ; width:160px ; font-size: 30px ; text-align: center;">computer's score</div>
+               </div>
+            </div>
+         </div>
+
+<!--------------------------------------------------------------------------------------------------------------------------------->
+
+         <div id = "outer2" style = "height : 60px"></div>
+
+ <!--------------------------------------------------------------------------------------------------------------------------------->
+
+         <div id = "outer2" style = "height : 60px">
+            <div id = "message" style="padding: auto;" class="ok">
+               pick your move 
+            </div>
+         </div>
+ <!--------------------------------------------------------------------------------------------------------------------------------->
+
+         <div id = "outer2" style = "height : 60px ; justify-content: right;" class = "homa-home">
+            <button id = "message1" style="padding: auto;" class = "homa">
+               reset
+            </button>
+         </div>
+
+ <!--------------------------------------------------------------------------------------------------------------------------------->
+
+         <div id = "outer2" style = "height : 40px"></div>
+
+ <!--------------------------------------------------------------------------------------------------------------------------------->
+    </div>
+<!------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+   <script>
+      
+//------------------------------------------------------utility functions--------------------------------------------------------------------------------------------//
+
+function getRandomInt(min, max) {
+   min = Math.ceil(min);
+   max = Math.floor(max);
+   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function mapper(i) {
+   if (i == 1) { return "paper"; }
+   if (i == 2) { return "scissor"; }
+   if (i == 3) { return "rock"; }
+}
+
+//----------------------------------------------------------------declarations---------------------------------------------------------------------------------------//
+
+let mycard = document.querySelector("#mypoints") ; 
+let cmcard = document.querySelector("#cmpoints") ; 
+let msg = document.querySelector("#message") ; 
+let hola = document.querySelector(".hola") ; 
+let computer = document.querySelectorAll(".boxc");
+let choice = document.querySelectorAll(".box");
+let reset = document.querySelectorAll(".homa")[0] ; 
+let rock = choice[0];
+let paper = choice[1];
+let scissor = choice[2];
+let output = 0;
+let flag = true;
+let result = 0 ;
+let id ; 
+let cmres = 1;  
+let my_score =0 ; 
+let cm_score =0 ; 
+let start = false ; 
+
+//----------------------------------------------------------------calculatory function-------------------------------------------------------------------------------//
+
+
+// 1. for changing messages 
+function changemsg(res , a , b ){
+
+   let mx =a ;
+   let mn =b ; 
+   if(a<b){mx = b ; mn = a ;  }
+   if(a==1 && b==3 ){mx = a ; mn = b ;}
+   if(a==3 && b==1 ){mx = b ; mn = a ;} 
+   let t ; 
+   let out = mapper(mx) ; 
+   let cm = mapper(mn) ; 
+   if(res==0){t= "Its's a draw" ; msg.style.backgroundColor = "darkslateblue" ;}
+   if(res==1)
+   { 
+      t= "you won ! " ; 
+     msg.style.backgroundColor = "rgb(14, 250, 53)" ;
+     t = t + ": "+out+" beats "+cm  ; 
+     my_score++ ; 
+   }
+   if(res==2)
+   {
+      t= "you lost" ; 
+      msg.style.backgroundColor = "rgb(211, 18, 18)" ;
+      t = t + ": "+out+" beats "+cm  ;
+      cm_score++ ; 
+   } 
+    mycard.innerText = my_score ; 
+    cmcard.innerText = cm_score ; 
+   msg.textContent = t;
+ }
+
+// 2. for calculation of result
+function func() {
+      clearInterval(id);
+      flag = false;
+      idx = getRandomInt(0, 2);
+      let cmres = idx;
+      if (cmres == 0) { cmres = 3; }
+      let bt = computer[idx];
+      let id2 =  setInterval(() => {
+         bt.style.border = "6px black solid";
+      }, 1);
+      setTimeout(()=>{clearInterval(id2)} , 2000) ;
+      console.log(bt);
+      if (output == cmres) { result = 0; }
+      else if (output == 1 && cmres == 3) { result = 1; }
+      else if (output == 3 && cmres == 1) { result = 2; }
+      else if (output > cmres) { result = 1; }
+      else if (output < cmres) { result = 2; }
+      changemsg(result, output, cmres);
+      setTimeout(() => {
+         clearInterval(id);
+         bt.style.border = "none";
+         applyRandomStyle(true);
+      }, 2000);
+   }
+ 
+// 3.applying animation 
+function applyRandomStyle(gate) {
+      if (gate) {
+         id = setInterval(() => {
+            let idx = getRandomInt(0, 2);
+            let bt = computer[idx];
+            bt.style.border = "6px black solid";
+            setTimeout(() => { bt.style.border = "none"; }, 100);
+         }, 100);
+      }
+   }
+
+
+//----------------------------------------------------------------event handeling------------------------------------------------------------------------------------//
+
+hola.addEventListener("click" , ()=>{ applyRandomStyle(true);})
+rock.addEventListener("click", () => { output = 3;func();  });
+paper.addEventListener("click", () => { output = 1;func(); });
+scissor.addEventListener("click", () => { output = 2;func(); });
+reset.addEventListener("click" , ()=>{
+   my_score = 0;
+   cm_score = 0;
+   mycard.innerText = my_score;
+   cmcard.innerText = cm_score;
+   msg.innerText = "Pick your move" ;
+   flag = false ;
+   clearInterval(id) ;
+   msg.style.backgroundColor = "darkslateblue" ;
+
+   })
+
+
+
+  
+
+
+   </script>
+</body>
+</html>

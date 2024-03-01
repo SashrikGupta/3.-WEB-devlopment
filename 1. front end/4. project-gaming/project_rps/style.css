@@ -1,0 +1,282 @@
+*
+{
+   margin : 0 ; 
+   padding : 0 ; 
+}
+body {
+   overflow-x: hidden;
+ }
+#nav
+{ 
+  display : flex ; 
+  justify-content: center ;
+  align-items: center ;
+  flex-wrap :wrap ; 
+  background-color: rgb(163, 12, 209);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align : center ;  
+  color : rgb(254, 225, 244) ; 
+  width : 100vw ; 
+  height : fit-content ; 
+  font-size: 47px;
+  margin : auto ; 
+  padding-top:6px ; 
+  padding-bottom: 6px ;
+}
+
+#instruct
+{
+   display : flex ; 
+   flex-wrap : wrap ; 
+   width : 45vw ;
+   justify-content: space-around ;
+   align-items: center ;
+   flex-direction: column;
+   gap : 0.5em ; 
+   background-color: rgba(209, 37, 228, 0.15);
+   box-shadow: 0 30px 40px rgba(209, 37, 228,.16);
+     
+
+}
+#outer
+{
+   margin-top : 50px ; 
+   display : flex ; 
+   flex-wrap : wrap ; 
+   justify-content: space-around;
+   flex-direction: row;
+}
+#wu
+{
+   display : inline-block ;
+   width : 35vw ; 
+}
+#wu:hover
+{
+ 
+   background-color: rgba(209, 37, 228, 0.4);
+   
+   display : inline-block ;
+   width : 35vw ; 
+}
+#im1
+{
+   width : 45vw ; 
+}
+
+@media(width >= 792px)
+{
+   #container
+   {
+      display : flex ; 
+      justify-content: center;
+      gap :10px ;
+      width : 40vw ;
+      margin:auto ; 
+      font-size: 60px ;
+   }
+
+   #max_outer
+   {
+      border : 2px black solid ; 
+      border-radius : 2rem  ; 
+      margin : 20px ; 
+      padding-top: 20px;
+
+   }
+ 
+   .homa
+   {
+     margin-right: 2.5%;  ; 
+   }
+   #message
+   {
+      font-size: 45px;
+      height : 60px ; 
+      padding-left:30px ;
+      padding-right:30px ;  
+      border-radius:1rem ; 
+      color : white ; 
+      background-color: darkslateblue;
+
+   }
+  
+      
+}
+@media(width<792px)
+{
+   #container
+   {
+      display : flex ; 
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center ;
+      gap :10px ;
+      width : 40vw ;
+      margin:auto ; 
+      font-size: 32px;
+   }
+
+   .homa-home
+   {
+      width : 100vw ; 
+      display:flex ; 
+      flex-direction:column ; 
+      flex-wrap :wrap ; 
+      justify-content: center;
+   }
+
+   .ok
+   {
+      width : 100vw ; 
+      font-size: 25px ;
+      margin:auto ; 
+      display:flex ; 
+      flex-direction:column ; 
+      flex-wrap :wrap ; 
+      justify-content: center;
+   }
+
+   #message
+   {
+      font-size: 25px;
+      font-weight: bolder;
+      text-align: center;
+      margin: auto ; 
+      height : 60px ; 
+      padding-left:30px ;
+      padding-right:30px ;  
+      border-radius:1rem ; 
+      color : white ; 
+      background-color: darkslateblue;
+
+   }
+
+   img
+   {
+      width: 0;
+      height: 0;
+   }
+
+   #instruct
+   {
+      width:100% ; 
+   }
+
+   #wu
+   {
+       width :80% ; 
+       margin:auto ; 
+   }
+
+   #wu:hover
+   {
+   
+      background-color: rgba(209, 37, 228, 0.4);
+      
+      display : inline-block ;
+      width : 80% ; 
+   }
+
+}
+
+
+.box
+{
+   border-radius: 50%;
+   height : 160px ;
+   width :160px ; 
+
+}
+.boxc
+{
+   border-radius: 50%;
+   height : 160px ;
+   width :160px ; 
+
+}
+#seprator
+{
+   width : 2px ; 
+   background-color: black;
+}
+
+#outer2
+{
+ 
+   width : 95vw ;
+   display : flex ;    
+   margin : auto  ; 
+   justify-content: center  ;
+   align-items: stretch ;    
+
+}
+
+#inner
+{
+   display : flex ; 
+   width : 40vw ;
+   flex-direction: column;
+   gap :10px ;
+   margin:auto ; 
+}
+#bt
+{
+   display : flex ; 
+   justify-content: center;
+}
+#card
+{
+    height : 160px ; 
+    width : 160px ; 
+    display : flex ;
+    flex-wrap : wrap ; 
+    flex-direction: column;
+    justify-content: space-around;
+  
+}
+#score
+{
+   width : 95vw ;
+   display : flex ;    
+   margin : auto  ; 
+   height :160px ; 
+   justify-content: center ;
+
+}
+
+
+#message1
+{
+   font-size: 45px;
+   height : 60px ; 
+   width: auto ; 
+   color:white ;
+   padding-left:30px ;
+   padding-right:30px ;  
+   border-radius:1rem ; 
+   background-color: darkslateblue;
+}
+
+#box1
+{
+   background-image: url("assets/rock.png") ; 
+   background-size: 100% 90%;
+}
+#box2
+{
+   background-image: url("assets/paper.png");
+   background-size:  100% 90%;
+}
+#box3
+{
+   background-image: url("assets/scissors.png");
+   background-size:  100% 90%;
+}
+.box:hover {
+   cursor: pointer;
+   border: 6px black solid;
+ }
+
+

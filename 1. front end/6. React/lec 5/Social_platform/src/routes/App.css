@@ -1,0 +1,50 @@
+.app-container
+{
+  display : flex ; 
+  width : 100vw ; 
+  height : 100vh ; 
+}
+.content
+{
+  width : 100% ; 
+  height : 100vh ; 
+  display : flex ; 
+  flex-direction: column;
+  flex-wrap : 'wrap'
+}
+.card
+{
+  margin-bottom : 1em ;
+  margin-left :2em ; 
+  margin-top : 1em ; 
+}
+.cont
+{
+  display : flex ; 
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.app-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap:10px ; 
+  overflow-y: auto; /* Enable vertical scrolling for content */
+}
+
+.in {
+  flex: 1;
+  overflow-y: auto; /* Enable vertical scrolling for the PostList or CreatePost component */
+}
+
+footer {
+  flex-shrink: 0; /* Prevent footer from shrinking when content is too tall */
+}

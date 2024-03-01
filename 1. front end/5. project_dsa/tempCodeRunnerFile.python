@@ -1,0 +1,41 @@
+def is_prime(num): 
+    if num < 2 : 
+        return False 
+    for i in range(2, int(num**0.5) + 1): 
+        if num % i == 0: 
+            return False 
+    return True 
+
+def find_permutation(N, P): 
+    # Create an array to store the permutation A 
+    A = [0] * N 
+    # Set to keep track of used numbers
+    used_numbers = set()
+    
+    # Iterate through the given permutation P 
+    for i in range(N): 
+        # Find a number for A[i] such that A[i] + P[i] is not prime 
+        for j in range(1, N + 1): 
+            if j not in used_numbers and not is_prime(j + P[i]): 
+                A[i] = j 
+                used_numbers.add(j)
+                break 
+    
+    if 0 in A:
+        return -1 
+    else:
+        return A 
+
+# Input the number of test cases 
+T = int(input()) 
+for _ in range(T): 
+    # Input length of the permutation N 
+    N = int(input()) 
+    # Input the permutation P 
+    P = list(map(int, input().split())) 
+    # Find and print the permutation A 
+    result = find_permutation(N, P) 
+    if result == -1: 
+        print(-1) 
+    else: 
+        print(*result)

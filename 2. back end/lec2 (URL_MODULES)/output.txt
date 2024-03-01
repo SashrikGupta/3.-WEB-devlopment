@@ -1,0 +1,155 @@
+PS C:\Users\sashr\OneDrive\Desktop\devlopment\3. WEB devlopment\2. back end> npm i url
+
+added 17 packages, and audited 18 packages in 6s
+
+11 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+PS C:\Users\sashr\OneDrive\Desktop\devlopment\3. WEB devlopment\2. back end> npm start 
+
+> starting@1.0.0 start
+> node index
+
+hello
+Server started on port 8000
+Url {
+  protocol: null,
+  slashes: null,
+  auth: null,
+  host: null,
+  port: null,
+  hostname: null,
+  hash: null,
+  search: '?num=1',
+  query: 'num=1',
+  pathname: '/home',
+  path: '/home?num=1',
+  href: '/home?num=1'
+}
+Terminate batch job (Y/N)? 
+Terminate batch job (Y/N)? y
+PS C:\Users\sashr\OneDrive\Desktop\devlopment\3. WEB devlopment\2. back end
+PS C:\Users\sashr\OneDrive\Desktop\devlopment\3. WEB devlopment\2. back end> npm start 
+
+> starting@1.0.0 start
+> node index
+
+hello
+Server started on port 8000
+Url {
+  protocol: null,
+  slashes: null,
+  auth: null,
+  host: null,
+  port: null,
+  hostname: null,
+  hash: null,
+  search: '?num=1',
+  query: 'num=1',
+  pathname: '/home',
+  path: '/home?num=1',
+  href: '/home?num=1'
+}
+Terminate batch job (Y/N)? y
+PS C:\Users\sashr\OneDrive\Desktop\devlopment\3. WEB devlopment\2. back end> npm start 
+
+> starting@1.0.0 start
+> node index
+
+hello
+Server started on port 8000
+Url {
+  protocol: null,
+  slashes: null,
+  auth: null,
+  host: null,
+  port: null,
+PS C:\Users\sashr\OneDrive\Desktop\devlopment\3. WEB devlopment\2. back end> npm start 
+
+> starting@1.0.0 start
+> node index
+
+hello
+Server started on port 8000
+Url {
+  protocol: null,
+  slashes: null,
+  auth: null,
+  host: null,
+  port: null,
+  hostname: null,
+  hash: null,
+  search: '?num=1&num2=5',
+  query: [Object: null prototype] { num: '1', num2: '5' },
+  pathname: '/home',
+  path: '/home?num=1&num2=5',
+  href: '/home?num=1&num2=5'
+}
+[Object: null prototype] { num: '1', num2: '5' }
+Terminate batch job (Y/N)? y
+PS C:\Users\sashr\OneDrive\Desktop\devlopment\3. WEB devlopment\2. back end> npm start 
+
+> starting@1.0.0 start
+> node index
+
+hello
+Server started on port 8000
+Url {
+  protocol: null,
+  slashes: null,
+  auth: null,
+  host: null,
+  port: null,
+  hostname: null,
+  hash: null,
+  search: '?num=1&num2=5',
+  query: [Object: null prototype] { num: '1', num2: '5' },
+  pathname: '/home',
+  path: '/home?num=1&num2=5',
+  href: '/home?num=1&num2=5'
+}
+[Object: null prototype] { num: '1', num2: '5' }
+undefined5
+Terminate batch job (Y/N)? y
+PS C:\Users\sashr\OneDrive\Desktop\devlopment\3. WEB devlopment\2. back end> npm start 
+
+> starting@1.0.0 start
+> node index
+
+hello
+Server started on port 8000
+Url {
+  protocol: null,
+  slashes: null,
+  auth: null,
+  host: null,
+  port: null,
+  hostname: null,
+  hash: null,
+  search: '?num=1&num2=5',
+  query: [Object: null prototype] { num: '1', num2: '5' },
+  pathname: '/home',
+  path: '/home?num=1&num2=5',
+  href: '/home?num=1&num2=5'
+}
+[Object: null prototype] { num: '1', num2: '5' }
+15
+Url {
+  protocol: null,
+  slashes: null,
+  auth: null,
+  host: null,
+  port: null,
+  hostname: null,
+  hash: null,
+  search: '?num=sashrik&num2=gupta',
+  query: [Object: null prototype] { num: 'sashrik', num2: 'gupta' },       
+  pathname: '/home',
+  path: '/home?num=sashrik&num2=gupta',
+  href: '/home?num=sashrik&num2=gupta'
+}
+[Object: null prototype] { num: 'sashrik', num2: 'gupta' }
+sashrikgupta
+Terminate batch job (Y/N)? y
+PS C:\Users\sashr\OneDrive\Desktop\devlopment\3. WEB devlopment\2. back end>
