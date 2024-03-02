@@ -14,8 +14,6 @@ const tours_data = JSON.parse(
 
 //------------------MIDDLEWARE------------------------------------
 
-
-
 app.use(morgan('dev')) ;  
 app.use(express.json());
 app.use((req , res , next)=>{
@@ -128,47 +126,23 @@ const getAllUsers = (req, res) => {
 
 //--------------------------ROUTES-------------------------------
 
-const tour_router = express.Router() ; 
-const user_router = express.Router() ;
-// to ease up communincations and structuring the file
-// we introduce a tour_router 
-// WHICH ACTUALLY IS just a middelware 
-
-// ITS A GOOD PRACTICE TO MOUNT SERVERS IN THE END OF ROUTING    
-// hence in order to impliment tour_router 
-// we use app.use() in below syntax 
-
-tour_router.route('/')
+app.route('/api/v1/tours')
     .get(getall)
     .post(putone);
 
-tour_router.route('/:id')
+app.route('/api/v1/tours/:id')
     .get(getone)
     .patch(update)
     .delete(del);
 
-user_router.route('/')
+app.route('/')
    .get(getAllUsers)
    .post(createUser);
   
-user_router.route('/:id')
+app.route('/:id')
    .get(getUser)
    .patch(updateUser)
    .delete(deleteUser);
-
-
-//---------------------------------------------------------------
-
-//--------------------------MOUNTING-----------------------------   
-   // can be genrallized as sub route
-   app.use('/api/v1/tours' , tour_router) ; 
-   app.use('/' , user_router) ; 
-   
-   // the above process is also called mounting up the router 
-   // we assign our router / in short we mounte=d our routers 
-
-
-
 
 //---------------------------------------------------------------
 
