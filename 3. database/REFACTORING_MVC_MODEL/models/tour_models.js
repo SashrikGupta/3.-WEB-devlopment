@@ -8,22 +8,79 @@ const mongoose = require('mongoose') ;
 // 3. for creation of model we need Schema 
 
 // this is how we define SCHEMA  
-const tour_schema = new mongoose.Schema({
-   name : {
-       type : String , 
-       required : [true , "tour should have a name "] , // constraints 
-//      field : [the value , validator ]
-       unique : true 
-   },
-   raiting : {
-       type : Number , 
-       default : 4.3   // constraint 
-   },
-   Price : {
-       type : Number , 
-       required : [true  , "tour mus have a price"] // error display for constarint 
-   }
-})
+const tour_schema = new mongoose.Schema(
+    {
+      name: {
+        type: String,
+        required: [true, 'A tour must have a name'],
+        unique: true,
+        trin : true 
+        // validate: [validator.isAlpha, 'Tour name must only contain characters']
+      },
+      duration: {
+        type: Number,
+        required: [true, 'A tour must have a duration']
+      },
+      maxGroupSize: {
+        type: Number,
+        required: [true, 'A tour must have a group size']
+      },
+      difficulty: {
+        type: String,
+        required: [true, 'A tour must have a difficulty']
+      },
+      ratingsAverage: {
+        type: Number,
+        default: 4.5,
+      },
+      ratingsQuantity: {
+        type: Number,
+        default: 0
+      },
+      price: {
+        type: Number,
+        required: [true, 'A tour must have a price']
+      },
+      priceDiscount: {
+        type: Number,
+        validate: {
+          validator: function(val) {
+            // this only points to current doc on NEW document creation
+            return val < this.price;
+          },
+          message: 'Discount price ({VALUE}) should be below regular price'
+        }
+      },
+      summary: {
+        type: String,
+        trim: true,
+        required: [true, 'A tour must have a description']
+      },
+      description: {
+        type: String,
+        trim: true
+      },
+      imageCover: {
+        type: String,
+        required: [true, 'A tour must have a cover image']
+      },
+      images: [String],
+      createdAt: {
+        type: Date,
+        default: Date.now(),
+      },
+      startDates: [Date]
+    //   secretTour: {
+    //     type: Boolean,
+    //     default: false
+    //   }
+    }
+    // {
+    //   toJSON: { virtuals: true },
+    //   toObject: { virtuals: true }
+    // }
+  );
+  
 
 //this is how we define MODEL 
 
