@@ -14,7 +14,6 @@ exports.aliasTopTours = (req, res, next) => {
 
 //-----------------QUEYRING-------------------------------------
 
-
 exports.getall = async (req, res) => {
   
     const features = new APIFeatures(Tour.find(), req.query)
@@ -40,8 +39,6 @@ exports.getall = async (req, res) => {
           });
         }
 };
-
-
 
 //----------------------------C.R.U.D----------------------------
 
