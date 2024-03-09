@@ -6,9 +6,9 @@
 
 const mongoose = require('mongoose') ; 
 const dotenv = require('dotenv') ; 
-const app = require('./REFACTORING_MVC_MODEL/app') ; 
-dotenv.config({path : './config.env'}) ; 
-const PORT = process.env.PORT || 4000 ;
+const app = require('./MODEL_AGGREGATION/app') ; 
+dotenv.config({path : './MODEL_AGGREGATION/config.env'}) ; 
+const PORT = process.env.PORT  ;
 const db = process.env.DATABASE 
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://sashrikgupta:s1cmqKMdBjJxOS3D@cluster0.sif58uu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" ;

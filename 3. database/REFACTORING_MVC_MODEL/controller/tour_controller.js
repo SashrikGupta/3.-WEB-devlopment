@@ -17,9 +17,12 @@ exports.getall = async (req, res) => {
     // deconstruct the obj and then construct is back to obj and then
     // pass it to  queryObj 
 
+
+    //----------------1a. filtering --------------------------------------------
     let queryObj = {...req.query}
     const excludeFields = ['page' , 'sort' , 'limit' , 'field'] 
     excludeFields.forEach(el => delete queryObj[el])
+    //--------------------------------------------------------------------------
 
 
     //----------1st way------------------ 
@@ -50,13 +53,15 @@ exports.getall = async (req, res) => {
     // so to impliment this we crete a function that adds ths $ sign
     
 
-    // ADVANCVED FILTERING 
-
-    let querystr = JSON.stringify(queryObj) ; 
+    // 1b. ADVANCVED FILTERING 
+    //--------------------------------------------------------------------------
+    let querystr = JSON.stringify(queryObj) 
     // replaces the op to $op
     querystr = querystr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
     // reassigning query 
-    queryObj = JSON.parse(querystr) ; 
+    queryObj = JSON.parse(querystr) 
+    //--------------------------------------------------------------------------
+
     // the find method actually returns a query and all the 
     // function can again be implimented in the query 
     // this allows us chaining functions like we did above 
@@ -64,9 +69,22 @@ exports.getall = async (req, res) => {
     // we will process it 
 
     //2 step process 
-    const query = Tour.find(queryObj) ; 
+    let query = Tour.find(queryObj) ; 
+
+    // 2 . implimenting sorting 
+    //--------------------------------------------------------------------------
+    if(req.query.sort){
+        // actuall query will be sort=price,average
+        // we need to make this as sortby = [price , average]
+        // this can be done by 
+        const sortBy = req.query.sort.split(',').join(' ') 
+        queue = query.sort(sortBy) 
+    }
+
 
     const tours = await query  
+
+    
 
     
 
