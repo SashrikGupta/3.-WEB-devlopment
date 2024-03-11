@@ -42,12 +42,11 @@ const RadarChart = (props) => {
         responsive: true,
         maintainAspectRatio: false,
         point: {
-          radius: 0, // Set the point radius to 0 to hide points
+          radius: 0,
         },
         plugins: {
          legend: {
              labels: {
-                 // This more specific font property overrides the global property
                 color : "rgb(225,225,225)"
 
              }
@@ -70,14 +69,14 @@ const RadarChart = (props) => {
                color: 'rgb(225,225,225)'
              },
             ticks: {
-              display: false, // Hide point labels
-              beginAtZero: false, // Hide axis labels
+              display: false,  
+              beginAtZero: false, 
               font: {
-                color: 'white' // Set label color to white
+                color: 'white'
               }
             },
             angleLines: {
-              color: 'white' // Set the color of the lines connecting the radar chart points
+              color: 'white' 
             }
           }
         }

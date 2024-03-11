@@ -8,10 +8,10 @@ const DayNames = {
 };
 
 const Timeline = ({ range, data, colorFunc }) => {
-  const cellHeight = '10px';
-  const cellWidth = '10px';
-  const cellMargin = '2px';
-  const cellWeekdaysWidth = '30px';
+  const cellHeight = '8px';
+  const cellWidth = '8px';
+  const cellMargin = '1px';
+  const cellWeekdaysWidth = '15px';
 
   const timelineStyle = {
   };
@@ -43,7 +43,7 @@ const Timeline = ({ range, data, colorFunc }) => {
   };
 
   const timelineWeekdaysWeekdayStyle = {
-    fontSize: '10px',
+    fontSize: '0px',
     height: cellHeight,
     border: '1px solid transparent',
     margin: cellMargin,
@@ -62,7 +62,7 @@ const Timeline = ({ range, data, colorFunc }) => {
     width: cellWidth,
     border: '1px solid rgba(0, 0, 0, 0.1)',
     margin: cellMargin,
-    borderRadius: '2px',
+    borderRadius: '0.16vw ',
     backgroundColor: 'rgba(0, 0, 0, 0.05)',
   };
 

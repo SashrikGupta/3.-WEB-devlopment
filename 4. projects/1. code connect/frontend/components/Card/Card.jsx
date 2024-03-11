@@ -3,9 +3,9 @@ import React from 'react';
 export default function Card(props) {
   return (
     <>
-      <div id="card" className={`rounded-xl  backdrop-blur-3xl shadow-xl  p-${props.p} mx-${props.mx} my-${props.my} mt-${props.mt} mb-${props.mb} `}
+      <div id="card" className={`flex justify-center items-center rounded-xl  backdrop-blur-3xl shadow-xl  p-${props.p} mx-${props.mx} my-${props.my} mt-${props.mt} mb-${props.mb} `}
         style={{
-          backgroundColor: '#333333',
+         backgroundColor: '#333333',
           width: props.w,
           height: props.h,
           marginRight: props.mr,

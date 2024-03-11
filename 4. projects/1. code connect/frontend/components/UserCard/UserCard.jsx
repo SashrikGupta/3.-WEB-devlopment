@@ -4,8 +4,8 @@ import Timeline from '../Timeline/Timeline'
 import { useState , useEffect } from 'react';
 import moment from 'https://cdn.skypack.dev/moment?min';
 import RadarChart from '../CodeChart/CodeChart';
-
-
+import styles from "./UserCard.module.css"
+import QBC from '../CodeChart/QBC';
 
 
 
@@ -34,9 +34,28 @@ export default function UserCard() {
       });
 
    // type of query --------------------------------------------------
-   const q_type = [90,84,64,88,21,24] ;
+   const q_type = [90,84,64,88,91,24] ;
    //-----------------------------------------------------------------
   
+   const description = ""
+   const name = "Sashrik"
+   const nickname = "sash🫠"
+   const year = "2nd year"
+   const tag = "react_dev "
+   const raiting = 4.3 ; 
+   const link = null || "https://source.unsplash.com/random/?citynight"
+   const n_query = [
+      { category: 'Total query', value: 54 },
+      { category: 'query solved', value: 20 },
+      { category: 'query asked' , value: 34 }
+    ];
+    const rank = 18 
+    const followed = 15 
+    const following = 20
+    const post = 30 
+    const str = `
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took...
+    `
 //------------------------------------------------------------------------------
 
 
@@ -52,11 +71,97 @@ export default function UserCard() {
       }} 
       >
          <Card w = '25vw' h = '60vh' mt = '[2vh]'ml = '3vw'>
-            {/* this for user details  */}
+            
+            <div className = "flex flex-col items-center justify-center"
+             style = {{
+               whidth : '25vw' , 
+               height : '60vh'
+             }}
+            >
+            <div className='flex flex-col items-center mb-2 justiy-center bg-[rgb(0,0,0,0.3)] rounded-lg'
+            style = {{width : '20vw' , height :'35vh'}}
+            >
+               
+            <div className = "bg-white rounded-lg my-2"
+               style={{
+                  width : '15vw',
+                  height : '40vh' , 
+                  backgroundImage : `url(${link})`
+               }}
+            >
+             </div>   
+             <div style ={{
+               fontSize : '4vh' ,
+               color : 'aqua' , 
+               marginBottom : '1.vh'
+             }}>
+             {nickname}
+               </div>           
+            </div>   
+
+
+
+             <div className = "bg"
+               style={{
+                  width : '20vw',
+                  height : '20vh' , 
+                  fontSize : '1vw',
+                  color : 'rgb(0,225,225)' , 
+               }}
+            >
+               <div className='px-2 bg-[#222222] rounded-lg text-center mb-2'
+               style = {{
+                   fontSize : '4vh' ,   
+                   color : 'white' 
+                  }}
+               >
+               points : <span style={{color : 'yellow'}}>500</span> 🪙
+               </div>
+
+
+               <div className='px-2 bg-[#222222] rounded-lg text-center mb-2'
+               style = {{
+                   fontSize : '1.5vh' ,   
+                   color : 'white' 
+                  }}
+               >
+               {str}
+               </div>
+
+               
+               
+               
+             </div>
+
+            </div>
+
          </Card>
 
          <Card w = '25vw' h = '27vh' mt='[2vh]' ml = '3vw'>
-            {/* this is for query details */}
+
+         <div className = {`${styles.codeEditor} opacity-60`}
+                 style = {{
+                  fontSize : '2.2vh'
+                 }}
+               >
+               <div className={styles.lineNumbering}>
+                  <span>1</span>
+                  <span>2</span>
+                  <span>3</span>
+                  <span>4</span>
+               </div>
+               <div className={styles.codeBlock}>
+                  <span className={styles.keyword}>class</span> <span className={styles.className}>{tag}</span> {'{'}
+                  <br />
+                  &nbsp;&nbsp;&nbsp;<span className={styles.variable}>String <span className={styles.variableName}>name = </span></span><span className={styles.value}>{`"${name}"`}</span>;
+                  <br />
+                  &nbsp;&nbsp;&nbsp;<span className={styles.variable}>String </span><span className={styles.variableName}>year = </span> <span className={styles.value}>{`"${year}"`}</span>;
+                  <br />
+                  &nbsp;&nbsp;&nbsp;<span className={styles.dataType}>float <span className={styles.variableName}>Raiting = </span></span> <span className={styles.value}>{raiting}</span>;
+                  <br />
+                  {'}'}
+               </div>
+               </div>
          </Card>
       </div>
 
@@ -68,7 +173,21 @@ export default function UserCard() {
             <div className='flex justify-center ' >
 
                <Card w = '31vw' h = '38vh' mt = '[2vh]' mr = '1vw'>
-                  {/* rank details  */}
+                  <h1 className='ml-[4vw]'> RANK  : {rank}</h1>
+                  <hr className='w-[30vw]'></hr>
+                  <div className='flex flex-col ml-[4vw]'
+                  style = {{
+                     //width : '20vw',
+                     gap : '0.01vw'
+                  }}
+                  >
+                  <p> following : {following}<br></br>
+                   followed by : {followed}<br></br>
+                   avergae raiting : {raiting}<br></br>
+                   posts : {post}</p>
+                  </div>
+
+
                </Card>
 
                <Card w = '31vw' h = '38vh' mt = '[2vh]' ml = '1vw'>
@@ -80,19 +199,34 @@ export default function UserCard() {
             {/* ------------------------------------------------ */}  
 
             <div className='flex justify-center items-center'>
-               <Card w = '44vw' h = '20vh' mt = '[2vh]'p = '4'>
+               <Card w = '44vw' h = '20vh' mt = '[2vh]' p = '4'>
                   <div className = "flex ">
                      <Timeline range={dateRange} data={data} colorFunc={({ alpha }) => `rgba(0 , 225 , 225 , ${alpha})`} />
                      </div>
                   </Card> 
                   <Card w = '18vw' h = '20vh' mt = '[2vh]'ml = '2vw'>
+                     <div className="flex justify-center items-center ">
+                     <div className = "flex flex-col justify-cennter items-center flex-wrap p-2 m-2"
+                      style  ={{
+                        backgroundRepeat : 'no-repeat' , 
+                        width : '15vw',
+                        height : '16vh'
+                      }}
+                      >
+                     <QBC data = {n_query}/>
+                     </div>
+                     </div>
+
+
+                      
                </Card>
             </div>
 
             {/* ------------------------------------------------ */}  
             <div className='flex justify-center items-center'>
                <Card w = '64vw' h = '27vh' mt = '[2vh]'>
-                  {/* recent querirs  */}
+                  <p> previous queries </p>
+                  <hr className='w-[60vw]'></hr>
                </Card>
             </div>
             {/* ------------------------------------------------ */} 
