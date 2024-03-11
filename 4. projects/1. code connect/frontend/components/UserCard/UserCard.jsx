@@ -43,11 +43,11 @@ export default function UserCard() {
    const year = "2nd year"
    const tag = "react_dev "
    const raiting = 4.3 ; 
-   const link = null || "https://source.unsplash.com/random/?citynight"
+   const link = null || "https://source.unsplash.com/random/?blue"
    const n_query = [
-      { category: 'Total query', value: 54 },
-      { category: 'query solved', value: 20 },
-      { category: 'query asked' , value: 34 }
+      { category: 'Total query', value: 5 },
+      { category: 'query solved', value: 3 },
+      { category: 'query asked' , value: 2 }
     ];
     const rank = 18 
     const followed = 15 
@@ -119,10 +119,12 @@ export default function UserCard() {
                </div>
 
 
-               <div className='px-2 bg-[#222222] rounded-lg text-center mb-2'
+               <div className='px-2 bg-[#222222] rounded-lg text-center mb-2 flex items-center'
                style = {{
                    fontSize : '1.5vh' ,   
-                   color : 'white' 
+                   color : 'white'  , 
+                   fontFamily : 'sans-serif' ,
+                   height : ' 14vh'
                   }}
                >
                {str}
@@ -173,8 +175,10 @@ export default function UserCard() {
             <div className='flex justify-center ' >
 
                <Card w = '31vw' h = '38vh' mt = '[2vh]' mr = '1vw'>
-                  <h1 className='ml-[4vw]'> RANK  : {rank}</h1>
-                  <hr className='w-[30vw]'></hr>
+                  <h1 className='ml-[4vw]'
+                  style = {{fontSize : '5vh',}}
+                  > RANK  : {rank}</h1>
+                  <hr className='w-[30vw] my-3'/>
                   <div className='flex flex-col ml-[4vw]'
                   style = {{
                      //width : '20vw',
@@ -225,7 +229,17 @@ export default function UserCard() {
             {/* ------------------------------------------------ */}  
             <div className='flex justify-center items-center'>
                <Card w = '64vw' h = '27vh' mt = '[2vh]'>
-                  <p> previous queries </p>
+                  <div className='flex justify-between'>
+                  <span><p style = {{display :"inline"}}> previous queries</p></span>
+                  <span>
+                  <a className='btn bg-[rgb(0,225,225,0.8)] h-[1.5em] w-[10em] flex justify-center items-center ' 
+                  style = {{
+                     border : '2px black solid'
+                  }}
+                  > go to queries </a>
+                  </span>
+                  </div>
+
                   <hr className='w-[60vw]'></hr>
                </Card>
             </div>
