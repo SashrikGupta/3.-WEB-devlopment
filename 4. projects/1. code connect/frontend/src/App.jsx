@@ -7,6 +7,7 @@ import Card from '../components/Card/Card';
 import Sidebar from '../components/Sidebar/Sidebar'
 import Navbari from '../components/Navbar/Navbar'
 import UserCard from '../components/UserCard/UserCard'
+import Querylist from '../components/Querylist/Querylist'
 
 function App() {
   
@@ -14,13 +15,10 @@ function App() {
 
   return (
     <>
-    <Navbari>
-    <Sidebar/> 
-    </Navbari>
-
-
-    <UserCard/>
-
+    <Navbari/>
+    {/* --routing-- */}
+    {/* <UserCard/> */}
+    <Querylist/>
     </>
   )
 }
