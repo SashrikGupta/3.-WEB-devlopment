@@ -8,6 +8,8 @@ import Sidebar from '../components/Sidebar/Sidebar'
 import Navbari from '../components/Navbar/Navbar'
 import UserCard from '../components/UserCard/UserCard'
 import Querylist from '../components/Querylist/Querylist'
+import Settings from '../components/Settings/Settings'
+import BG from '../contexts/background'
 
 function App() {
   
@@ -15,10 +17,13 @@ function App() {
 
   return (
     <>
-    <Navbari/>
-    {/* --routing-- */}
-    {/* <UserCard/> */}
-    <Querylist/>
+    <BG>
+      <Navbari/>
+        {/* --routing-- */}
+        <UserCard/>
+        {/* <Querylist/> */}
+        {/* <Settings/>  */}
+    </BG>
     </>
   )
 }

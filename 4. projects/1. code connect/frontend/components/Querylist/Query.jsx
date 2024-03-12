@@ -8,7 +8,7 @@ export default function Query({bg , title  , tag  , type , sender , solver , poi
 
   return (
 
-      <div className={`bg-[${bg}] px-4 py-3 mb-2 sm:px-6 shadow overflow-hidden sm:rounded-md max-w-[80vw] mx-auto `}>
+      <div className={`bg-[${bg}] px-4 py-3 mb-2 backdrop-blur-3xl shadow-xl sm:px-6 shadow overflow-hidden sm:rounded-md max-w-[80vw] mx-auto `}>
           <div className="flex items-center justify-between">
             <div>
                <h3 className="text-lg leading-6 font-medium text-white mb-1">

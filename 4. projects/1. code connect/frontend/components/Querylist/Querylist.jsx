@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Query from './Query';
+import { useState } from 'react'
+import { curr_context } from '../../contexts/background'
 
 const Querylist = () => {
-  const bg = '#333333';
+  const now_context = useContext(curr_context) ; 
+  const bg = now_context.theme ;
   const description = 'dsa';
   const title = 'c++ problem';
   const points = 50;
