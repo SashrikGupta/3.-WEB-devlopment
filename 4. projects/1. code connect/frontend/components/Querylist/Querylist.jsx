@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import Query from './Query';
 import { useState } from 'react'
 import { curr_context } from '../../contexts/background'
+import Card from '../Card/Card';
 
 const Querylist = () => {
   const now_context = useContext(curr_context) ; 
@@ -34,7 +35,7 @@ const Querylist = () => {
       status: 'inprocess',
       style_status: 'text-yellow-600',
       button: 'details',
-      style_button: 'w-[10vw] flex items-center justify-center text-white rounded-lg bg-yellow-600 font-medium hover:text-indigo-500',
+      style_button: 'w-[10vw] flex items-center justify-center text-white rounded-lg bg-yellow-600  font-medium hover:text-indigo-500',
       link: '#',
       solver: '',
     },
@@ -42,12 +43,26 @@ const Querylist = () => {
 
   const temp = [1, 2, 3, 1,2 , 1 , 2, 1, 3 , 3 , 2 , 1];
   return (
+    <> 
+    <div className = "w-[100vw] flex flex-col justigy-center">
+      <div className='m-[auto] mt-4 '>
+        <Card w = "80vw" h = "10vh">
+          <hr></hr>
+          sort by options :  
+          <button id="sort" className = "btn bg-[aqua] opacity-[1] mx-1 p-0 px-1" style = {{fontSize: "2.5vh" }}> Date </button>
+          <button id="unsolved" className = "btn bg-[aqua] opacity-[1] mx-1 p-0 px-1 " style = {{fontSize: "2.5vh" }}> Points </button>
+          <button id="solved" className = "btn bg-[aqua] opacity-[1] mx-1 p-0 px-1" style = {{fontSize: "2.5vh" }}> unsolved </button>
+          <button id="solved" className = "btn bg-[aqua] opacity-[1] mx-1 p-0 px-1" style = {{fontSize: "2.5vh" }}> solved </button>
+          <button id="process"className = "btn bg-[aqua] opacity-[1] mx-1 p-0 px-1" style = {{fontSize: "2.5vh" }}> process </button>
+          <hr className='mt-1'></hr>
+        </Card>
+      </div>
     <div style={{ overflow: 'hidden' }}>
       <ul
         className='mt-10'
         style={{
           overflowY: 'auto',
-          maxHeight: '80vh',
+          maxHeight: '70vh',
           scrollbarWidth: 'none', 
           WebkitScrollbar: {
             display: 'none', 
@@ -75,6 +90,9 @@ const Querylist = () => {
         })}
       </ul>
     </div>
+    </div>
+    </>
+
   );
 };
 

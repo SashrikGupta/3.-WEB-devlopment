@@ -232,7 +232,7 @@ export default function UserCard() {
                   <div className='flex justify-between'>
                   <span><p style = {{display :"inline"}}> previous queries</p></span>
                   <span>
-                  <a className='btn bg-[rgb(0,225,225,0.8)] h-[1.5em] w-[10em] flex justify-center items-center ' 
+                  <a className='btn bg-[aqua] h-[1.5em] w-[10em] flex justify-center items-center ' 
                   style = {{
                      border : '2px black solid'
                   }}

@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '../Card/Card';
 import { IoSettings } from "react-icons/io5";
+import {Link} from 'react-router-dom'
 
 const Navbar = (props) => {
   return (
@@ -15,8 +16,8 @@ const Navbar = (props) => {
         <div className="hidden sm:ml-6 sm:block">
           <div className="flex space-x-4">
 
-            <a href="#" className="bg-gray-900 h-[4.5vh] my-1 flex items-center text-white rounded-md px-3 py-2 text-sm font-medium px-0" aria-current="page">Dashboard</a>
-            <a href="#" className="text-gray-300 h-[4.5vh] my-1 flex items-center hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Queries</a>
+            <Link to="/" className="bg-gray-900 h-[4.5vh] my-1 flex items-center text-white rounded-md px-3 py-2 text-sm font-medium px-0" aria-current="page">Dashboard</Link>
+            <Link to="/query" className="text-gray-300 h-[4.5vh] my-1 flex items-center hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Queries</Link>
             <a href="#" className="text-gray-300 h-[4.5vh] my-1 flex items-center hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">connect</a>
             <a href="#" className="text-gray-300 h-[4.5vh] my-1 flex items-center hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">blog</a>
 
@@ -25,7 +26,9 @@ const Navbar = (props) => {
       </div>
 
       <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-      <IoSettings style = {{fontSize:"1.2em"}} className='m-[auto] h-[4.5vh] w-[2em] hover:bg-gray-700 rounded-md' />
+      <Link to="/settings">
+        <IoSettings style = {{fontSize:"1.2em"}} className='m-[auto] h-[4.5vh] w-[2em] hover:bg-gray-700 rounded-md' />
+      </Link>
         <button type="button" className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
           <span className="absolute -inset-1.5"></span>
           <span className="sr-only">View notifications</span>
