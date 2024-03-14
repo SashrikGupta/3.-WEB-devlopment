@@ -1,5 +1,5 @@
 import React from 'react'
-import {useEffect, useRef } from 'react';
+import {useState , useEffect, useRef } from 'react';
 import Codemirror from 'codemirror';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/dracula.css';
@@ -12,12 +12,14 @@ import './TextEditor.module.css'
 
 
 export default function TextEditor(props) {
+
    const editorRef = useRef(null);
    useEffect(() => {
       async function init() {
         if (!editorRef.current) return;
         Codemirror.fromTextArea(editorRef.current, {
-          mode: 'text/x-c++src',
+             mode : props.mode ,  
+          // mode: 'text/x-c++src',
           theme: 'dracula',
           autoCloseTags: true,
           autoCloseBrackets: true,
@@ -25,7 +27,9 @@ export default function TextEditor(props) {
         });
       }
       init();
-    }, []);
+    }, [props.mode]);
+
+    //monokai
   
     return (
       <>
