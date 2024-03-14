@@ -1,76 +1,78 @@
-import React from 'https://cdn.skypack.dev/react?min';
+import React , {useContext} from 'react';
 import moment from 'https://cdn.skypack.dev/moment?min';
 
+
+
 const DayNames = {
-  1: 'Mon',
-  3: 'Wed',
-  5: 'Fri'
+  1: `Mon`,
+  3: `Wed`,
+  5: `Fri`
 };
 
 const Timeline = ({ range, data, colorFunc }) => {
-  const cellHeight = '8px';
-  const cellWidth = '8px';
-  const cellMargin = '1px';
-  const cellWeekdaysWidth = '15px';
+  const cellHeight = `8px`;
+  const cellWidth = `8px`;
+  const cellMargin = `1px`;
+  const cellWeekdaysWidth = `15px`;
 
   const timelineStyle = {
   };
 
   const timelineMonthsStyle = {
-    display: 'flex',
+    display: `flex`,
     paddingLeft: cellWeekdaysWidth,
   };
 
   const timelineMonthsMonthStyle = {
     width: cellWidth,
     margin: cellMargin,
-    border: '1px solid transparent',
-    fontSize: '10px',
+    border: `1px solid transparent`,
+    fontSize: `10px`,
   };
 
   const timelineMonthsHiddenStyle = {
-    visibility: 'hidden',
+    visibility: `hidden`,
   };
 
   const timelineBodyStyle = {
-    display: 'flex',
+    display: `flex`,
   };
 
   const timelineWeekdaysStyle = {
-    display: 'inline-flex',
-    flexDirection: 'column',
+    display: `inline-flex`,
+    flexDirection: `column`,
     width: cellWeekdaysWidth,
   };
 
   const timelineWeekdaysWeekdayStyle = {
-    fontSize: '0px',
+    fontSize: `0px`,
     height: cellHeight,
-    border: '1px solid transparent',
+    border: `1px solid transparent`,
     margin: cellMargin,
-    verticalAlign: 'middle',
+    verticalAlign: `middle`,
   };
 
   const timelineCellsStyle = {
-    display: 'inline-flex',
-    flexDirection: 'column',
-    flexWrap: 'wrap',
+    display: `inline-flex`,
+    flexDirection: `column`,
+    flexWrap: `wrap`,
     height: `${(parseInt(cellHeight) + 4) * 8}px`,
   };
 
   const timelineCellsCellStyle = {
     height: cellHeight,
     width: cellWidth,
-    border: '1px solid rgba(0, 0, 0, 0.1)',
+    border: `1px solid rgba(0, 0, 0, 0.1)`,
     margin: cellMargin,
-    borderRadius: '0.16vw ',
-    backgroundColor: 'rgba(0, 0, 0, 0.05)',
+    borderRadius: `0.16vw `,
+    backgroundColor: `rgba(0, 0, 0, 0.05)`,
   };
 
   const timelineCellsCellHoverStyle = {
-    border: '1px solid rgba(0, 0, 0, 0.3)',
+    border: `1px solid rgba(0, 0, 0, 0.3)`,
   };
 
-  let days = Math.abs(range[0].diff(range[1], 'days'));
+  let days = Math.abs(range[0].diff(range[1], `days`));
   let cells = Array.from(new Array(days));
   let weekDays = Array.from(new Array(7));
   let months = Array.from(new Array(Math.floor(days / 7)));
@@ -81,7 +83,7 @@ const Timeline = ({ range, data, colorFunc }) => {
   let colorMultiplier = 1 / (max - min);
 
   let startDate = range[0];
-  const DayFormat = 'DDMMYYYY';
+  const DayFormat = `DDMMYYYY`;
 
   const uniqueMonths = {};
 

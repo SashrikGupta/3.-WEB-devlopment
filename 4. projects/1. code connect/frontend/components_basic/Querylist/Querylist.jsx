@@ -44,17 +44,23 @@ const Querylist = () => {
   const temp = [1, 2, 3, 1,2 , 1 , 2, 1, 3 , 3 , 2 , 1];
   return (
     <> 
-    <div className = "w-[100vw] flex flex-col justigy-center">
-      <div className='m-[auto] mt-4 '>
+    <div className = "w-[100vw] flex flex-col  justigy-center">
+      <div className='m-[auto] mt-4 flex flex-col items-center justify-center w-[80vw] h-[10vh]'>
         <Card w = "80vw" h = "10vh">
+          <div className='flex w-[80vw] justify-around'>
           <hr></hr>
-          sort by options :  
+          <span>sort by options : </span>  
+          <div className= 'overflow-x-auto '>
           <button id="sort" className = "btn bg-[aqua] opacity-[1] mx-1 p-0 px-1" style = {{fontSize: "2.5vh" }}> Date </button>
           <button id="unsolved" className = "btn bg-[aqua] opacity-[1] mx-1 p-0 px-1 " style = {{fontSize: "2.5vh" }}> Points </button>
           <button id="solved" className = "btn bg-[aqua] opacity-[1] mx-1 p-0 px-1" style = {{fontSize: "2.5vh" }}> unsolved </button>
           <button id="solved" className = "btn bg-[aqua] opacity-[1] mx-1 p-0 px-1" style = {{fontSize: "2.5vh" }}> solved </button>
           <button id="process"className = "btn bg-[aqua] opacity-[1] mx-1 p-0 px-1" style = {{fontSize: "2.5vh" }}> process </button>
-          <hr className='mt-1'></hr>
+          <button id="process"className = "btn bg-[aqua] opacity-[1] mx-1 p-0 px-1" style = {{fontSize: "2.5vh" }}> your asked </button>
+          <button id="process"className = "btn bg-[aqua] opacity-[1] mx-1 p-0 px-1" style = {{fontSize: "2.5vh" }}> your solve </button>
+          </div>
+          <hr className='mt-1'></hr>           
+          </div>
         </Card>
       </div>
     <div style={{ overflow: 'hidden' }}>
