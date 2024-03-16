@@ -10,50 +10,45 @@ import 'codemirror/addon/edit/closetag';
 import 'codemirror/addon/edit/closebrackets';
 import './TextEditor.module.css'
 
-
 export default function TextEditor(props) {
+  const editorRef = useRef(null);
+  const [ed, setEd] = useState(null);
 
-   const editorRef = useRef(null);
-   useEffect(() => {
-      async function init() {
-        if (!editorRef.current) return;
-        Codemirror.fromTextArea(editorRef.current, {
-             mode : props.mode ,  
-          // mode: 'text/x-c++src',
-          theme: 'dracula',
-          autoCloseTags: true,
-          autoCloseBrackets: true,
-          lineNumbers: true,
-        });
-      }
-      init();
-    }, [props.mode]);
+  useEffect(() => {
+    async function init() {
+      if (!editorRef.current) return;
+      const newEd = Codemirror.fromTextArea(editorRef.current, {
+        mode: props.mode,
+        theme: 'dracula',
+        autoCloseTags: true,
+        autoCloseBrackets: true,
+        lineNumbers: true,
+      });
+      setEd(newEd);
+      props.set(newEd);
+    }
+    init();
+  }, [props.mode]);
 
-    //monokai
-  
-    return (
-      <>
- 
-      <div id ="o"
+  return (
+    <div
+      id="o"
+      className={props.tailwind}
+      style={{
+        height: props.h,
+        width: props.w,
+        overflow: 'hidden',
+      }}
+    >
+      <textarea
         className={props.tailwind}
+        ref={editorRef}
+        id={props.id}
         style={{
-          height: props.h,
+          minHeight: props.h,
           width: props.w,
-          overflow: 'hidden',
         }}
-      >
-        <textarea
-          className={props.tailwind}
-          ref={editorRef}
-          id="RTE"
-          style={{
-            minHeight : props.h , 
-            width: props.w,
-          }}
-        ></textarea>
-      </div>
-      </>
-
-    );
-    
+      />
+    </div>
+  );
 }

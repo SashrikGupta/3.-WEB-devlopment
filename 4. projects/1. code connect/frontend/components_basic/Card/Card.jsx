@@ -10,7 +10,7 @@ export default function Card(props) {
   
   return (
     <>
-      <div id="card" className={`flex justify-center items-center rounded-xl  backdrop-blur-3xl shadow-xl  p-${props.p} mx-${props.mx} my-${props.my} mt-${props.mt} mb-${props.mb} `}
+      <div id="card" className={`flex justify-center items-center rounded-xl  backdrop-blur-3xl shadow-xl  p-${props.p} mx-${props.mx} my-${props.my} mt-${props.mt} mb-${props.mb} ${props.tailwind}`}
         style={{
           backgroundColor: `${bg}`,
           width: props.w,
