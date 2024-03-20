@@ -115,7 +115,7 @@ const Timeline = ({ range, data, colorFunc }) => {
                 key={index}
                 className='timeline-cells-cell'
                 style={{ ...timelineCellsCellStyle, backgroundColor: color }}
-                onMouseOver={() => console.log('Hovered')}
+                onMouseOver={() => console.log(index + ":"+data[index].date._d  + ":" + data[index].value)}
               >
                 <style>
                   {`

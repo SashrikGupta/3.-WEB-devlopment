@@ -21,18 +21,28 @@ export default function UserCard() {
      //activity----------------------------------------------------
 
       // 1 year range
-      let startDate = moment().add(-365, 'days');
-      console.log(startDate)
-      let dateRange = [startDate, moment()];
-      //console.log(moment())
-      let data = Array.from(new Array(366)).map((_, index) => {
-         console.log(moment(startDate).add(index, 'day')) ;
-         return {
-         date: moment(startDate).add(index, 'day'),
-         value: Math.floor(Math.random() * 100)
-         };
-      });
 
+
+      const example = ["2023-09-03" , "2023-09-08" , "2024-03-20"];
+
+      let startDate = moment().add(-365, 'days');
+      console.log(startDate);
+      
+      let dateRange = [startDate, moment().add(1, 'days')];
+      console.log(moment());
+      
+      let data = Array.from(new Array(366)).map((_, index) => {
+          let value = 0;
+          let currentDate = moment(startDate).add(index, 'day').format('YYYY-MM-DD');
+          console.log(currentDate);
+          if (example.includes(currentDate)) value = 50;
+          return {
+              date: moment(startDate).add(index, 'day'),
+              value: value+10
+          };
+      });
+      
+      console.log(data);
    // type of query --------------------------------------------------
    const q_type = [90,84,64,88,91,24] ;
    //-----------------------------------------------------------------
@@ -42,7 +52,7 @@ export default function UserCard() {
    const nickname = "sash🫠"
    const year = "2nd year"
    const tag = "react_dev "
-   const raiting = 4.3 ; 
+   const raiting = "65476693534756" ; 
    const link = null || "https://source.unsplash.com/random/?blue"
    const n_query = [
       { category: 'Total query', value: 5 },
@@ -143,7 +153,7 @@ export default function UserCard() {
 
          <div className = {`${styles.codeEditor} opacity-60`}
                  style = {{
-                  fontSize : '2.2vh'
+                  fontSize : '2vh'
                  }}
                >
                <div className={styles.lineNumbering}>
@@ -159,7 +169,7 @@ export default function UserCard() {
                   <br />
                   &nbsp;&nbsp;&nbsp;<span className={styles.variable}>String </span><span className={styles.variableName}>year = </span> <span className={styles.value}>{`"${year}"`}</span>;
                   <br />
-                  &nbsp;&nbsp;&nbsp;<span className={styles.dataType}>float <span className={styles.variableName}>Raiting = </span></span> <span className={styles.value}>{raiting}</span>;
+                  &nbsp;&nbsp;&nbsp;<span className={styles.dataType}>object<span className={styles.variableName}> id = </span></span> <span className={styles.value}>{raiting}</span>;
                   <br />
                   {'}'}
                </div>
