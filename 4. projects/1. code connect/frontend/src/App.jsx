@@ -7,24 +7,29 @@ import Settings from '../components_basic/Settings/Settings'
 import BG from '../contexts/background'
 import QueryPost from '../comoponent_code/QuerPost/QueryPost';
 import { Routes  , Route} from 'react-router-dom';
-
-
+import QDL from '../components_basic/Querylist/QDL'; 
+import Config from '../contexts/Conf';
 function App() {
   
   
 
   return (
     <>
-
+      
       <BG>
-        <Navbari/>
-        <Routes>
-          <Route path="/settings" element = {<Settings/>} /> 
-          <Route path="/solve-query" element = {<Querylist/>} /> 
-          <Route path="/post-query" element = {<QueryPost/>} /> 
-          <Route path = "/" element = {<UserCard/>}/>
+        <Config>
+         <Navbari/>
+          <Routes>
+           <Route path="/settings" element = {<Settings/>} /> 
+           <Route path="/solve-query" element = {<Querylist/>} /> 
+           <Route path="/post-query" element = {<QueryPost/>} /> 
+           <Route path="/:id" element = {<UserCard/>}/>
+           <Route path="/querydetail/:id" element = {<QDL></QDL>} />
           </Routes>
+        </Config>
       </BG>
+      
+
 
     </>
   )

@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Card from '../Card/Card';
 import { IoSettings } from "react-icons/io5";
 import { Link } from 'react-router-dom';
+import { curr_config } from '../../contexts/Conf';
 
 const Navbar = (props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  const now_config = useContext(curr_config) ; 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -25,7 +26,7 @@ const Navbar = (props) => {
               </div>
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
-                  <Link to="/" className="bg-gray-900 h-[4.5vh] my-1 flex items-center text-white rounded-md px-3 py-2 text-sm font-medium px-0" aria-current="page">Dashboard</Link>
+                  <Link to={`/${now_config.logged_in_userid}`} className="bg-gray-900 h-[4.5vh] my-1 flex items-center text-white rounded-md px-3 py-2 text-sm font-medium px-0" aria-current="page">Dashboard</Link>
                   <a href="#" className="text-gray-300 h-[4.5vh] my-1 flex items-center hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">connect</a>
                   <div className="relative" onMouseLeave={closeDropdown}>
                     <button onClick={toggleDropdown} className="text-gray-300 h-[4.5vh] my-1 flex items-center hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">

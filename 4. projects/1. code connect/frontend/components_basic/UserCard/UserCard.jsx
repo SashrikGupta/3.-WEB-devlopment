@@ -1,18 +1,142 @@
-import React from 'react'
-import Card from '../Card/Card'
-import Timeline from '../Timeline/Timeline'
-import { useState , useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import Card from '../Card/Card';
+import Timeline from '../Timeline/Timeline';
 import moment from 'https://cdn.skypack.dev/moment?min';
 import RadarChart from '../CodeChart/CodeChart';
-import styles from "./UserCard.module.css"
+import styles from "./UserCard.module.css";
 import QBC from '../CodeChart/QBC';
+import { useParams } from 'react-router-dom';
+import { curr_config } from '../../contexts/Conf';
 
-
-
+function formating(dateString) {
+  let dateObject = new Date(dateString);
+  let formattedDate = dateObject.toISOString().split('T')[0];
+  return formattedDate;
+}
 
 export default function UserCard() {
+  const [name, set_name] = useState("Sashrik");
+  const [points , set_points] = useState(500) ; 
+  const [nickname, set_nickname] = useState("sash🫠");
+  const [year, set_year] = useState("2nd year");
+  const [tag, set_tag] = useState("react_dev");
+  const [raiting, set_raiting] = useState("65476693534756");
+  const [link, set_link] = useState(null || "https://source.unsplash.com/random/?blue");
+  const [n_query, set_n_query] = useState([
+    { category: 'Total query', value: 5 },
+    { category: 'query solved', value: 3 },
+    { category: 'query asked', value: 2 }
+  ]);
+  const [rank, set_rank] = useState(18);
+  const [followed, set_followed] = useState(0);
+  const [following, set_following] = useState(0);
+  const [post, set_post] = useState(30);
+  const [str, set_str] = useState(`
+    Lorem Ipsum is simply dummy text of the printing 
+    and typesetting industry. Lorem Ipsum has been the 
+    industry's standard dummy text ever since the 
+    1500s, when an unknown printer took...`) ;    
+   const [q_type , set_q_type] = useState([90,80,70,60,50,40])
 
 
+
+
+    let startDate = moment().add(-365, 'days');
+    let dateRange = [startDate, moment().add(1, 'days')];
+  
+
+    const example = ["2023-09-03", "2023-09-08", "2024-04-13"];
+  const [data , set_data] = useState(
+   Array.from(new Array(366)).map((_, index) => {
+      let value = 0;
+      let currentDate = moment(startDate).add(index, 'day').format('YYYY-MM-DD');
+      if (example.includes(currentDate)) value = 50;
+      return {
+        date: moment(startDate).add(index, 'day'),
+        value: value + 10
+      };
+    })
+  );
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const [you, set_you] = useState(false); // Assuming it's a boolean, modify as needed
+  
+  const now_config = useContext(curr_config);
+  const back_key = now_config.back_key;
+  const { id } = useParams();
+  const [user, set_user] = useState({});
+  const [dates, set_dates] = useState([]);
+
+  
+
+  useEffect(() => {
+    fetch(`${back_key}/getuser`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache',
+      },
+      body: JSON.stringify({ id: id }),
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error('Failed to fetch data');
+        }
+      })
+      .then(data => {
+        set_user(data.data.user);
+        const dates_temp = [];
+        set_dates(data.data.user.activity.map(el => formating(el.date)));
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
+  useEffect(() => {
+   console.log(user) ; 
+   console.log(dates) ; 
+   set_data(
+      Array.from(new Array(366)).map((_, index) => {
+         let value = 0;
+         let currentDate = moment(startDate).add(index, 'day').format('YYYY-MM-DD');
+         if (dates.includes(currentDate)) value = 50;
+         return {
+           date: moment(startDate).add(index, 'day'),
+           value: value + 10
+         };
+       })
+   )
+   set_name(user.username) ; 
+   set_nickname(user.nickname) ; 
+   set_year(user.year)
+   set_tag(user.tag) ; 
+   set_raiting(user.rating) ; 
+   set_str(user.description) ; 
+   set_points(user.points) ; 
+   if(user.followed) set_followed(user.followed.length) ;
+   if(user.following) set_following(user.following.length) 
+   
+     
+ }, [dates]); // Include startDate in the dependency array
+ 
+ useEffect(() => {
+   console.log(data);
+ }, [data]); // Log data whenever it changes
+ 
 
 
 // user area ----------------------------------------------------------------
@@ -23,49 +147,8 @@ export default function UserCard() {
       // 1 year range
 
 
-      const example = ["2023-09-03" , "2023-09-08" , "2024-03-20"];
 
-      let startDate = moment().add(-365, 'days');
-      console.log(startDate);
       
-      let dateRange = [startDate, moment().add(1, 'days')];
-      console.log(moment());
-      
-      let data = Array.from(new Array(366)).map((_, index) => {
-          let value = 0;
-          let currentDate = moment(startDate).add(index, 'day').format('YYYY-MM-DD');
-          console.log(currentDate);
-          if (example.includes(currentDate)) value = 50;
-          return {
-              date: moment(startDate).add(index, 'day'),
-              value: value+10
-          };
-      });
-      
-      console.log(data);
-   // type of query --------------------------------------------------
-   const q_type = [90,84,64,88,91,24] ;
-   //-----------------------------------------------------------------
-  
-   const description = ""
-   const name = "Sashrik"
-   const nickname = "sash🫠"
-   const year = "2nd year"
-   const tag = "react_dev "
-   const raiting = "65476693534756" ; 
-   const link = null || "https://source.unsplash.com/random/?blue"
-   const n_query = [
-      { category: 'Total query', value: 5 },
-      { category: 'query solved', value: 3 },
-      { category: 'query asked' , value: 2 }
-    ];
-    const rank = 18 
-    const followed = 15 
-    const following = 20
-    const post = 30 
-    const str = `
-    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took...
-    `
 //------------------------------------------------------------------------------
 
 
@@ -125,7 +208,7 @@ export default function UserCard() {
                    color : 'white' 
                   }}
                >
-               points : <span style={{color : 'yellow'}}>500</span> 🪙
+               points : <span style={{color : 'yellow'}}>{points}</span> 🪙
                </div>
 
 
@@ -169,7 +252,9 @@ export default function UserCard() {
                   <br />
                   &nbsp;&nbsp;&nbsp;<span className={styles.variable}>String </span><span className={styles.variableName}>year = </span> <span className={styles.value}>{`"${year}"`}</span>;
                   <br />
-                  &nbsp;&nbsp;&nbsp;<span className={styles.dataType}>object<span className={styles.variableName}> id = </span></span> <span className={styles.value}>{raiting}</span>;
+                  &nbsp;&nbsp;&nbsp;<span className={`${styles.dataType}`}>object<span className={styles.variableName}> id = </span></span> <span className={styles.value} style = {{
+                     fontSize : "8px"
+                  }}>{user._id}</span>;
                   <br />
                   {'}'}
                </div>

@@ -1,18 +1,52 @@
-import React, { useContext } from 'react';
+import React, { useEffect , useContext } from 'react';
 import Query from './Query';
 import { useState } from 'react'
 import { curr_context } from '../../contexts/background'
 import Card from '../Card/Card';
+import fetchUserName from '../../NON_HTML/fetchuser';
+import { curr_config } from '../../contexts/Conf';
 
 const Querylist = () => {
+
+  const now_config = useContext(curr_config) ; 
+  const back_key = now_config.back_key;
+  const route = `${back_key}/query/getall`;
+  const [queries, set_queries] = useState([]);
+
+  useEffect(() => {
+    fetch(route, {
+      headers: {
+        'Cache-Control': 'no-cache', // Ensure fresh data is always fetched
+        // Add other caching-related headers if needed
+      }
+    })
+    .then(res => {
+      if (res.status === 200) {
+        return res.json();
+      } else {
+        // Handle other status codes if needed
+        throw new Error('Failed to fetch data');
+      }
+    })
+    .then(data => {
+      set_queries(data.data.users);
+    })
+    .catch(error => console.error(error));
+  }, []);
+
+  useEffect(() => {
+    console.log(queries); // Log the fetched data after state update
+  }, [queries]); // Run this effect only when queries state changes
+
+ 
+console.log(queries)
+
+
+
+
   const now_context = useContext(curr_context) ; 
   const bg = now_context.theme ;
-  const description = 'dsa';
-  const title = 'c++ problem';
-  const points = 50;
-  const sender = 'sash';
-  const solver = 'aagam';
-  const tag = 'compititive';
+  
 
   const option = {
     unsolved: {
@@ -75,22 +109,16 @@ const Querylist = () => {
           },
         }}
       >
-        {temp.map((el) => {
+        {queries.map((el) => {
           let tem = '';
-          if (el === 1) tem = option.unsolved;
-          if (el === 2) tem = option.solved;
-          if (el === 3) tem = option.inprocess;
+          if (el.status == "unsolved") tem = option.unsolved;
+          if (el.status == "solved") tem = option.solved;
           return (
             <Query
-              key={el}
+              key={el._id}
               bg={bg}
-              title={title}
-              description={description}
-              points={points}
-              sender={sender}
-              solver={solver}
-              tag={tag}
-              type={tem}
+              query = {el}
+              type = {tem}
             />
           );
         })}

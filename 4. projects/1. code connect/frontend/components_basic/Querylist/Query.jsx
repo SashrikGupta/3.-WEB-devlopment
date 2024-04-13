@@ -1,8 +1,71 @@
-import React from 'react'
+import React  , {useState , useEffect, useContext}from 'react'
+import {Link} from 'react-router-dom'
+import { curr_config } from '../../contexts/Conf';
 
-export default function Query({bg , title  , tag  , type , sender , solver , points , description }) {
+export default function Query({bg , id  , query  , type }) {
 
+  const now_config = useContext(curr_config) ; 
 
+  const description = query.problemStatment ; 
+  const points = query.points ;
+  const tag = query.tag ; 
+  const title = query.title ; 
+  const back_key = now_config.back_key ; 
+  const routeUser = `${back_key}/getuser`
+
+  const [sender , set_sender] = useState(query.author) ; 
+  const [solver , set_solver] = useState(query.solver) ; 
+   
+
+  useEffect(()=>{
+   fetch(routeUser, {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache', // Ensure fresh data is always fetched
+      // Add other headers as needed
+    },
+    body: JSON.stringify({ id: sender}), // Replace yourIdValue with the actual ID value
+  })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          // Handle other status codes if needed
+          throw new Error('Failed to fetch data');
+        }
+      })
+      .then(data => {
+        set_sender(data.data.user.username) ; 
+      })
+      .catch(error => console.error('Error fetching data:', error));
+ 
+  }, [])
+
+  useEffect(()=>{
+    fetch(routeUser, {
+       method: 'POST',
+       headers: {
+       'Content-Type': 'application/json',
+       'Cache-Control': 'no-cache', // Ensure fresh data is always fetched
+       // Add other headers as needed
+     },
+     body: JSON.stringify({ id: solver}), // Replace yourIdValue with the actual ID value
+   })
+       .then(res => {
+         if (res.ok) {
+           return res.json();
+         } else {
+           // Handle other status codes if needed
+           throw new Error('Failed to fetch data');
+         }
+       })
+       .then(data => {
+         set_solver(data.data.user.username) ; 
+       })
+       .catch(error => console.error('Error fetching data:', error));
+  
+   }, [])
    
   // as of now prop drilling has been implimeted but context api needs to be implimented 
 
@@ -26,7 +89,7 @@ export default function Query({bg , title  , tag  , type , sender , solver , poi
           </div>
           <div className="my-1 flex items-center justify-between">
             <p className="text-sm font-medium text-gray-500">Status: <span className={`${type.style_status}`}>{type.status}</span></p>
-            <a href={`${type.link}`} className={`${type.style_button}`}>{type.button}</a>
+            <Link to={`/querydetail/${query._id}`} className={`${type.style_button}`}>{type.button}</Link>
           </div>
           <p> 
             <span className='border-2 border-gray-800 rounded-lg '> &nbsp; author&nbsp; </span>  &nbsp; : &nbsp;

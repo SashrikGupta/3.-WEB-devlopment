@@ -13,9 +13,10 @@ router.route('/userlist')
 
 
 router.route('/user')
-    .get(controller.getuser) 
     .post(controller.putone)
 
+router.route('/getuser')
+    .post(controller.getuser)
 
 router.route('/follow')
     .post(controller.follow)
@@ -24,7 +25,7 @@ router.route('/rank')
     .post(controller.rank)
 
 router.route('/userquerylist')
-      .get(controller.getUserQuery)
+      .post(controller.getUserQuery)
 
 router.route('/users/all')
       .get(controller.getAllUsersSortedByPoints)

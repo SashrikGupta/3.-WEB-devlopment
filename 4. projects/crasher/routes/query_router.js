@@ -10,6 +10,7 @@ router.route('/post')
 router.route('/getall')
       .get(controller.getall)
 
-
+router.route('/solve')
+      .post(controller.solve)
 
 module.exports = router ;

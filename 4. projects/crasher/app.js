@@ -1,5 +1,6 @@
 const morgan = require('morgan') ; 
 const express = require('express');
+const cors = require('cors')
 const app = express();
 const user_router = require('./routes/user_router') ;
 const query_router = require('./routes/query_router') ; 
@@ -7,7 +8,7 @@ const query_router = require('./routes/query_router') ;
 
 app.use(morgan('dev')) ;  
 app.use(express.json());
-
+app.use(cors()) ; 
 // app.use((req , res , next)=>{
 //     req.requestTime = new Date().toISOString() ; 
 //     next() ; 
