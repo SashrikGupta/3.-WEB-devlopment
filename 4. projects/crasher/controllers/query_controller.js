@@ -155,3 +155,19 @@ exports.solve = async(req,res) =>{
       res.status(500).json({ status: 'FAILED', message: 'Internal Server Error' });      
     }
 }
+
+exports.getone = async(req , res)=>{
+    try {
+       const query = await Query.findById(req.body.id);
+       res.status(200).json({
+           status: 'SUCCESS',
+           data: {
+               users: query,
+               message: 'Successfully fetched queries sorted by points'
+           }
+       });
+   } catch (error) {
+       console.error('Error in getting queries sorted by points:', error);
+       res.status(500).json({ status: 'FAILED', message: 'Internal Server Error' });
+   }
+ }

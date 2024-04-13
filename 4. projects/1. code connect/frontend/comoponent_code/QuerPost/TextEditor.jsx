@@ -13,8 +13,10 @@ import './TextEditor.module.css'
 export default function TextEditor(props) {
   const editorRef = useRef(null);
   const [ed, setEd] = useState(null);
-
+  const [codes , set_code] = useState() ; 
   useEffect(() => {
+    set_code(props.prog)
+    console.log(codes) 
     async function init() {
       if (!editorRef.current) return;
       const newEd = Codemirror.fromTextArea(editorRef.current, {
@@ -28,7 +30,12 @@ export default function TextEditor(props) {
       props.set(newEd);
     }
     init();
-  }, [props.mode]);
+  }, [props.mode , props.prog  , codes]);
+
+  useEffect(()=>{
+  set_code(props.prog);  
+  } , [codes , props.prog])
+
 
   return (
     <div
@@ -47,8 +54,12 @@ export default function TextEditor(props) {
         style={{
           minHeight: props.h,
           width: props.w,
-        }}
-      />
+        }} 
+       value = {codes}
+      >
+      
+        {console.log(codes)}
+      </textarea>
     </div>
   );
 }

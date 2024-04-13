@@ -163,7 +163,8 @@ const handel_run = ()=>{
             mode = {mode}
             run_btn = {run_btn}
             set = {set_ed}
-         />
+         >
+         </TextEditor>
          </Card>
          <Card w = '65vw' h = '33vh' mx = '3' mt='[2vh]' >
           <div className='h-[33vh] flex flex-col justify-around'>
