@@ -100,38 +100,63 @@ exports.getuser = async (req , res)=>{
 
 // function to get all queries asked by a user
 exports.getUserQuery = async (req, res) => {
-   try {
-       const use = await user.findById(req.body.id);
-       let userQueries = [];
-       let tagCounts = {
-           "competetive": 0,
-           "web dev": 0,
-           "acedemic": 0,
-           "machine learning": 0,
-           "cyber security": 0,
-           "others": 0
-       } ;
-       for (const queryId of use.queries) {
-           const queryObj = await query.findById(queryId);
-           userQueries.push(queryObj);
+  try {
+      const userId = req.body.id; // Assuming this is the user's ID
+      const use = await user.findById(userId); // Assuming User is your use model
 
-           // Count the occurrences of each tag
-           tagCounts[queryObj.tag]++;
-       }
+      let totalQueries = 0;
+      let totalAskedQueries = 0;
+      let totalSolvedQueries = 0;
 
-       res.status(200).json({
-           status: 'SUCCESS',
-           data: {
-               queries: userQueries,
-               tagCounts: tagCounts,
-               message: 'Successfully sent user details'
-           }
-       });
-   } catch (error) {
-       console.error('Error in getting userQueries:', error);
-       res.status(500).json({ status: 'FAILED', message: 'Internal Server Error' });
-   }
+      let userQueries = [];
+      let tagCounts = {
+          "competetive": 0,
+          "web dev": 0,
+          "acedemic": 0,
+          "machine learning": 0,
+          "cyber security": 0,
+          "others": 0
+      };
+
+      for (const queryId of use.queries) {
+          const queryObj = await query.findById(queryId);
+
+          // Count total queries
+          totalQueries++;
+
+          userQueries.push(queryObj);
+
+          // Count the occurrences of each tag
+          tagCounts[queryObj.tag]++;
+
+          // Check if the query was asked by the use
+          if (queryObj.author.toString() === userId) {
+              totalAskedQueries++;
+          }
+
+          // Check if the query was solved by the use
+          if (queryObj.solver && queryObj.solver.toString() === userId) {
+              totalSolvedQueries++;
+          }
+      }
+
+      res.status(200).json({
+          status: 'SUCCESS',
+          data: {
+              totalQueries: totalQueries,
+              totalAskedQueries: totalAskedQueries,
+              totalSolvedQueries: totalSolvedQueries,
+              queries: userQueries,
+              tagCounts: tagCounts,
+              message: 'Successfully sent use details'
+          }
+      });
+  } catch (error) {
+      console.error('Error in getting userQueries:', error);
+      res.status(500).json({ status: 'FAILED', message: 'Internal Server Error' });
+  }
 };
+
 
 // getting all users sorted in accordance to points 
 

@@ -11,23 +11,16 @@ const router = express.Router() ;
 router.route('/userlist')
       .get()
 
-
 router.route('/user')
-    .post(controller.putone)
-
+      .post(controller.putone)
 router.route('/getuser')
-    .post(controller.getuser)
-
+      .post(controller.getuser)
 router.route('/follow')
-    .post(controller.follow)
-
+      .post(controller.follow)
 router.route('/rank')
-    .post(controller.rank)
-
+      .post(controller.rank)
 router.route('/userquerylist')
       .post(controller.getUserQuery)
-
 router.route('/users/all')
       .get(controller.getAllUsersSortedByPoints)
-
 module.exports = router ;

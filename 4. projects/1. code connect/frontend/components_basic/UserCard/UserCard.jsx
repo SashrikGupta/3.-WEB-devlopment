@@ -27,7 +27,7 @@ export default function UserCard() {
     { category: 'query solved', value: 3 },
     { category: 'query asked', value: 2 }
   ]);
-  const [rank, set_rank] = useState(18);
+  const [rank, set_rank] = useState("na");
   const [followed, set_followed] = useState(0);
   const [following, set_following] = useState(0);
   const [post, set_post] = useState(30);
@@ -36,10 +36,10 @@ export default function UserCard() {
     and typesetting industry. Lorem Ipsum has been the 
     industry's standard dummy text ever since the 
     1500s, when an unknown printer took...`) ;    
-   const [q_type , set_q_type] = useState([90,80,70,60,50,40])
-
-
-
+   const [q_type , set_q_type] = useState([0,0,0,0,0,0])
+   //comp , webdev , academic , machinelearning , cyber , others 
+  const [temp_obj , set_temp_obj] = useState({}) ; 
+  const [temp_obj_2 , set_temp_obj_2] = useState({}) ; 
 
     let startDate = moment().add(-365, 'days');
     let dateRange = [startDate, moment().add(1, 'days')];
@@ -60,6 +60,7 @@ export default function UserCard() {
    
 
 
+  
 
 
 
@@ -68,12 +69,7 @@ export default function UserCard() {
 
 
 
-
-
-
-
-
-  const [you, set_you] = useState(false); // Assuming it's a boolean, modify as needed
+ // Assuming it's a boolean, modify as needed
   
   const now_config = useContext(curr_config);
   const back_key = now_config.back_key;
@@ -81,6 +77,9 @@ export default function UserCard() {
   const [user, set_user] = useState({});
   const [dates, set_dates] = useState([]);
 
+
+
+  const [you, set_you] = useState(now_config.logged_in_userid == id);
   
 
   useEffect(() => {
@@ -147,8 +146,91 @@ export default function UserCard() {
       // 1 year range
 
 
+  useEffect(()=>{
+    fetch(`${back_key}/rank`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache',
+      },
+      body: JSON.stringify({ id: id }),
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error('Failed to fetch data');
+        }
+      })
+      .then(data => {
+        set_rank(data.data.rank)
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
+  
 
       
+
+  useEffect(()=>{
+    fetch(`${back_key}/userquerylist` , {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache',
+      },
+      body: JSON.stringify({ id: id }),
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error('Failed to fetch data');
+        }
+      })
+      .then(data => {
+        set_temp_obj(data.data.tagCounts)
+        set_temp_obj_2([
+          data.data.totalQueries , 
+          data.data.totalAskedQueries , 
+          data.data.totalSolvedQueries
+        ])
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
+
+
+  useEffect(()=>{
+  // populate the query type 
+  console.log(temp_obj)   ; 
+  if(temp_obj){
+    const q_arr = [0,0,0,0,0,0] ; 
+    //comp , webdev , academic , machinelearning , cyber , others 
+    q_arr[0] = temp_obj["competetive"] ; 
+    q_arr[1] = temp_obj["web dev"] ; 
+    q_arr[2] = temp_obj["acedemic"] ; 
+    q_arr[3] = temp_obj["machine learning"] ; 
+    q_arr[4] = temp_obj["cyber security"] ; 
+    q_arr[5] = temp_obj["others"] ; 
+    console.log(q_arr) ; 
+    set_q_type(q_arr) ; 
+    console.log(q_type)
+  }
+  if(temp_obj_2){
+    const q_obj = [
+      { category: 'Total query', value: temp_obj_2[0] },
+      { category: 'query solved', value: temp_obj_2[1] },
+      { category: 'query asked', value: temp_obj_2[2] }
+    ]
+    set_n_query(q_obj) ; 
+  }
+  } , [temp_obj , temp_obj_2])
+
+  useEffect(
+    ()=>{
+      console.log(q_type) ; 
+      console.log(n_query) ; 
+    } , [q_type , temp_obj , temp_obj_2]
+  )
 //------------------------------------------------------------------------------
 
 
@@ -274,19 +356,26 @@ export default function UserCard() {
                   style = {{fontSize : '5vh',}}
                   > RANK  : {rank}</h1>
                   <hr className='w-[30vw] my-3'/>
+
+                  <div className = "flex ">
+
                   <div className='flex flex-col ml-[4vw]'
                   style = {{
                      //width : '20vw',
                      gap : '0.01vw'
                   }}
                   >
+                  
                   <p> following : {following}<br></br>
                    followed by : {followed}<br></br>
                    avergae raiting : {raiting}<br></br>
-                   posts : {post}</p>
+                   posts : {post} <br></br>
+                   {you ? <></> :  <button className = "btn bg-[aqua] h-[1.5em] w-[10em] flex justify-center items-center "> follow  </button>}
+                   </p>
                   </div>
-
-
+                  
+                  
+                   </div>
                </Card>
 
                <Card w = '31vw' h = '38vh' mt = '[2vh]' ml = '1vw'>

@@ -1,9 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef  , useState} from 'react';
 import Chart from 'chart.js/auto';
 
 const RadarChart = (props) => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
+  const [qt , set_qt] = useState(props.qt) ; 
+  useEffect(()=>{
+    console.log(qt) ; 
+    set_qt(props.qt)
+  } , [props.qt])
 
   useEffect(() => {
     const data = {
@@ -101,7 +106,7 @@ const RadarChart = (props) => {
         chartInstance.current.destroy();
       }
     };
-  }, []);
+  }, [props.qt]);
 
   return (
     <div style={{ width: '30vw', height: '38vh' }}>

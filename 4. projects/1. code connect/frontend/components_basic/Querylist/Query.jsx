@@ -75,9 +75,9 @@ export default function Query({bg , id  , query  , type }) {
           <div className="flex items-center justify-between">
             <div>
                <h3 className="text-lg leading-6 font-medium text-white mb-1">
-               <span className='bg-secondary rounded-lg px-2'>{title}</span>
+               <span className=' rounded-lg px-2'>{title}</span>
                &nbsp; &nbsp;
-               <span className='bg-secondary rounded-lg px-2'>{tag}</span>
+               <span className=' rounded-lg px-2'>{tag}</span>
                &nbsp;&nbsp;&nbsp;&nbsp;
                </h3>
                <hr></hr>
@@ -92,12 +92,12 @@ export default function Query({bg , id  , query  , type }) {
             <Link to={`/querydetail/${query._id}`} className={`${type.style_button}`}>{type.button}</Link>
           </div>
           <p> 
-            <span className='border-2 border-gray-800 rounded-lg '> &nbsp; author&nbsp; </span>  &nbsp; : &nbsp;
-            <span className='bg-secondary px-1 rounded-md border-2 border-gray-800 '>{sender}</span> 
+            <span className=' border-gray-800 rounded-lg '> &nbsp; author&nbsp; </span>  &nbsp; : &nbsp;
+            <span className=' px-1 rounded-md  border-gray-800 '>{sender}</span> 
             <span className={`${type.solver}`}>
             &nbsp; |  &nbsp;
-            <span className='border-2 border-gray-800 rounded-lg '> &nbsp; solver&nbsp; </span>  &nbsp; : &nbsp;
-            <span className='bg-secondary px-1 rounded-md border-2 border-gray-800 '>{solver}</span> 
+            <span className=' border-gray-800 rounded-lg '> &nbsp; solver&nbsp; </span>  &nbsp; : &nbsp;
+            <span className=' px-1 rounded-md  border-gray-800 '>{solver}</span> 
             </span>
          </p>
     </div>
