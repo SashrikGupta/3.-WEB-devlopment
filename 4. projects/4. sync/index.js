@@ -4,7 +4,7 @@ const http = require('http');
 const { Server } = require('socket.io');
 const server = http.createServer(app);
 const dotenv = require('dotenv'); // Import dotenv
-
+const ACTIONS = require('./actions.js')
 // Load environment variables from config.env
 dotenv.config({ path: './config.env' });
 
