@@ -1,4 +1,4 @@
-import React , {useState , useContext, useEffect} from 'react'
+import React , {useState , useContext, useEffect , useRef} from 'react'
 import Card from '../components_basic/Card/Card'
 import TextEditor from '../comoponent_code/QuerPost/TextEditor'
 import { Link } from 'react-router-dom';
@@ -13,18 +13,24 @@ import 'codemirror/addon/edit/closetag';
 import 'codemirror/addon/edit/closebrackets';
 import '../comoponent_code/QuerPost/TextEditor.module.css'
 import codemirror from 'codemirror';
-import {useParams} from 'react-router-dom'
-
-
-
+import {useParams ,  useNavigate , Navigate} from 'react-router-dom'
+import { initSocket } from '../socket';
+import ACTIONS from '../actions';
+import { useLocation } from 'react-router-dom';
+import SyncEditor from './SyncEditor';
+import { IoIosSend } from "react-icons/io";
+import Message from './Message';
 
 
 
 export default function Room() {
 
+  const [chat_list , set_chat_list] = useState([])
+  const [my_chat , set_my_chat] = useState() 
+  const [message_enter , set_message_enter] = useState(0) ; 
   const [client , setclient] = useState([{socketId : 1  , username : "sashrik gupta" } , {socketId : 2 , username : "jhon doe"}])
-
-
+  const codeRef = useRef(null) ; 
+  const rng = useNavigate() ; 
   const {id}= useParams() ; 
   const cont = useContext(curr_context) ; 
   const bg  = cont.theme ; 
@@ -36,6 +42,7 @@ export default function Room() {
   const [ed  , set_ed] = useState() ; 
   const [code , set_code] = useState() ; 
   const [ohm , set_ohm] = useState() ; 
+  const [allchat , set_all_chat] = useState([]) ; 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -63,6 +70,128 @@ useEffect(()=>{
   if(bg=='') set_ohm('transparent')
   else  set_ohm("#333333") 
 } , [bg])
+
+
+
+
+
+
+
+const socketRef = useRef(null) ; 
+const location = useLocation() ; 
+
+if(!location.state){
+  return <Navigate to = "/code"></Navigate>
+}
+
+useEffect(()=>{
+  const init = async ()=>{
+    socketRef.current = await initSocket () ; 
+    socketRef.current.on('connect_error' , (err)=>handelErrors(err)) ; 
+    socketRef.current.on('connect_failed' , (err)=> handelErrors(err)) ; 
+
+    function handelErrors(e){
+      console.log('socket_error' , e) ; 
+      alert("connection failed try again later") ; 
+      rng('/') ; 
+    }
+
+    socketRef.current.emit(ACTIONS.JOIN , {
+      roomId : id , 
+      username : location.state?.username 
+    }) ; 
+
+     //listening for joined evet 
+     socketRef.current.on(ACTIONS.JOINED , ({clients , username , socketid})=>{
+      if(username !== location.state?.username){
+        alert(`${username} has joined`) ; 
+        console.log(`${username} joined`) ; 
+      }
+      setclient(clients)
+      socketRef.current.emit(ACTIONS.SYNC_CHANGE , {
+        code : codeRef.current , 
+        socketid ,
+      })
+     })
+
+
+     //listening for disconnected
+     socketRef.current.on(ACTIONS.DISCONNECTED , ({socketId , username})=>{
+       alert(`${username} left the room `) ; 
+       setclient((prev)=>{
+        return prev.filter(client => client.socketId !== socketId)
+       })
+     })
+  } ;  init() ; 
+  // cleaning function 
+  return ()=>{
+    socketRef.current.disconnect() ; 
+    socketRef.current.off(ACTIONS.JOINED)
+    socketRef.current.off(ACTIONS.DISCONNECTED)
+  }
+} , [])
+
+
+
+useEffect(()=>{
+       //listening to chat event 
+       
+       if (socketRef.current) { // Check if socketRef.current exists
+        socketRef.current.emit('chat', {
+          roomId: id,
+          chat_text : my_chat,
+          username : location.state?.username
+        }) 
+         
+        
+      } 
+      }, [socketRef.current, message_enter ])
+
+
+  
+function m_handler(){
+
+  const old_chat = allchat ; 
+  old_chat.push({
+    username : location.state?.username , 
+    chat : my_chat
+  })
+  set_all_chat(old_chat) ; 
+  set_message_enter(1-message_enter) ; 
+  document.getElementById('kp').value = '' ; 
+}
+  
+
+
+
+
+useEffect(()=>{
+  //listening to chat event 
+  if(socketRef.current){
+    socketRef.current.on('chat' , ({chat_text , username})=>{
+      set_chat_list({
+        username : username , 
+        chat : chat_text
+      }) ; 
+      console.log(chat_list)
+
+      const old_chat = allchat ; 
+      old_chat.push({
+        username  , 
+        chat : chat_text
+      })
+      set_all_chat(old_chat) ; 
+     })
+  }
+} , [socketRef.current , allchat])
+
+useEffect(()=>{
+console.log(chat_list)
+} , [chat_list , allchat])
+
+
+
+
 
 
 useEffect(() => {
@@ -122,8 +251,13 @@ const handel_run = ()=>{
                      {client.map(el=><span>{el.username} , </span> )}
                      </span></div>
                   </div>
-               <div className=' h-[79vh] w-[25vw] bg-white/10 rounded-lg'>
+                  <div className='h-[69vh] w-[25vw] bg-white/10 rounded-lg' style={{ overflowY: 'scroll', scrollbarWidth: 'none' }}>
+                  {allchat && allchat.map((el , index)=><Message key ={index} ked = {location.state?.username} username = {el.username} chat = {el.chat} />)}
+                 </div>
 
+               <div className='flex justify-between mt-4 w-[25vw]'>
+                <input id = "kp" className='rounded-lg h-[5vh] bg-white/10 text-[2vh] text-center w-[20vw]' onChange={(e)=>{set_my_chat(e.target.value)}}/>
+                <button className='btn btn-primary flex justify-center items-center w-[4vw]' onClick={m_handler}><IoIosSend/> </button>
                </div>
           
       </div>
@@ -132,7 +266,13 @@ const handel_run = ()=>{
 
       <div className='flex flex-col'>
          <Card w = '65vw' h = '55vh' mx = '3'  mt = '2'>
-          <TextEditor 
+
+
+
+
+
+
+          <SyncEditor 
             id = "RTE"
             w='63vw' 
             h='52vh'
@@ -140,8 +280,15 @@ const handel_run = ()=>{
             mode = {mode}
             run_btn = {run_btn}
             set = {set_ed}
+            socketRef = {socketRef}
+            roomId = {id}
+            onCodeChange = {(code)=>{codeRef.current = code}}
          >
-         </TextEditor>
+         </SyncEditor>
+
+
+
+
          </Card>
          <Card w = '65vw' h = '33vh' mx = '3' mt='[2vh]' >
           <div className='h-[33vh] flex flex-col justify-around items-center'>
