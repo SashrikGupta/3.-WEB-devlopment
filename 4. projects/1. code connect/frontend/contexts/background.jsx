@@ -19,7 +19,7 @@ export default function BG(props) {
     "https://wallpapercave.com/wp/wp2757880.gif" , 
     "https://i.pinimg.com/originals/1d/a3/66/1da3663ce1d7d0f6098a31a667e862b4.gif" , 
     "https://media.istockphoto.com/id/1454162250/photo/beautiful-cosmic-4k-video-footage-gas-clouds-and-stars.webp?b=1&s=170667a&w=0&k=20&c=7BSrOB9fy4e1ml6_0gwAI-P2mP12Jn3o2QEffdBzdQw=",
-    "https://e1.pxfuel.com/desktop-wallpaper/554/641/desktop-wallpaper-floating-in-space.jpg",
+    "https://i.makeagif.com/media/4-26-2023/0VRwQ8.gif",
     "https://c4.wallpaperflare.com/wallpaper/268/183/676/black-holes-interstellar-movie-wallpaper-preview.jpg"
    ]
 

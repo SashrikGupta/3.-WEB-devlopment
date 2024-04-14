@@ -10,6 +10,8 @@ import { Routes  , Route} from 'react-router-dom';
 import QDL from '../components_basic/Querylist/QDL'; 
 import Config from '../contexts/Conf';
 import Con from '../components_basic/Connect/Conn';
+import Enter from '../componenet_sync/Enter'
+import Room from '../componenet_sync/Room';
 function App() {
   
   
@@ -27,6 +29,8 @@ function App() {
            <Route path=   "/:id"               element = { <UserCard /> } />
            <Route path=   "/querydetail/:id"   element = { <QDL/>       } />
            <Route path=   "/con/con"           element = { <Con/>       } />
+           <Route path=   "/code"              element = { <Enter/>     } />
+           <Route path=   "/room/:id"         element = { <Room/>      } />
           </Routes>
         </Config>
       </BG>
