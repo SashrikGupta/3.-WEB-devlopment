@@ -8,5 +8,5 @@ export const initSocket = async()=>{
       timeout : 10000 , 
       transports : ['websocket'],
    }
-    return io("http://localhost:2981" , options) ; 
+    return io("https://mern-stack-devlopment.vercel.app/" , options) ; 
 }
