@@ -5,8 +5,17 @@ const cors = require('cors') ;
 const { Server } = require('socket.io');
 const server = http.createServer(app);
 const dotenv = require('dotenv'); // Import dotenv
-const ACTIONS = require('./actions.js')
+
 // Load environment variables from config.env
+
+const ACTIONS = {
+  JOIN : 'join' , 
+  JOINED : 'joined' , 
+  DISCONNECTED : 'disconnected' , 
+  CODE_CHANGE : 'code-change' , 
+  SYNC_CHANGE : 'sync-code' , 
+  LEAVE : 'leave' , 
+} ;
 dotenv.config({ path: './config.env' });
 app.use(cors())
 const PORT = process.env.PORT || 2981; // Use PORT from environment variables or default to 2981
