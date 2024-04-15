@@ -20,7 +20,7 @@ export default function SyncEditor({ onCodeChange , socketRef, ...props }) {
     async function init() {
       if (!editorRef.current) return;
       const newEd = Codemirror.fromTextArea(editorRef.current, {
-        mode: props.mode,
+        mode: 'python',
         theme: 'dracula',
         autoCloseTags: true,
         autoCloseBrackets: true,

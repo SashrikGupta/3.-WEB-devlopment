@@ -1,13 +1,14 @@
 const express = require('express');
 const app = express();
 const http = require('http');
+const cors = require('cors') ; 
 const { Server } = require('socket.io');
 const server = http.createServer(app);
 const dotenv = require('dotenv'); // Import dotenv
 const ACTIONS = require('./actions.js')
 // Load environment variables from config.env
 dotenv.config({ path: './config.env' });
-
+app.use(cors())
 const PORT = process.env.PORT || 2981; // Use PORT from environment variables or default to 2981
 
 const io = new Server(server);
