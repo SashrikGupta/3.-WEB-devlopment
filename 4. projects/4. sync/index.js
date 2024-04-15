@@ -25,6 +25,7 @@ const io = new Server(server);
 const userSocketMap = {};
 
 function getALLConnectedClients(roomId) {
+  console.log("ok1") ; 
   return Array.from(io.sockets.adapter.rooms.get(roomId) || []).map((socketid) => {
     return {
       socketid,
@@ -34,6 +35,7 @@ function getALLConnectedClients(roomId) {
 }
 
 io.on('connection', (socket) => {
+  console.log("ok2") ;
   console.log('socket connected', socket.id);
 
   socket.on(ACTIONS.JOIN, ({ roomId, username }) => {
@@ -51,18 +53,22 @@ io.on('connection', (socket) => {
   });
 
   socket.on(ACTIONS.CODE_CHANGE, ({ roomId, code }) => {
+    console.log("ok3") ;
     socket.in(roomId).emit(ACTIONS.CODE_CHANGE, { code });
   });
 
   socket.on('chat', ({ roomId, chat_text, username }) => {
+    console.log("ok4") ;
     socket.in(roomId).emit('chat', { chat_text, username });
   });
 
   socket.on(ACTIONS.SYNC_CHANGE, ({ socketid, code }) => {
+    console.log("ok5") ;
     io.to(socketid).emit(ACTIONS.CODE_CHANGE, { code });
   });
 
   socket.on('disconnecting', () => {
+    console.log("ok6") ;
     const rooms = [...socket.rooms];
     rooms.forEach((roomId) => {
       socket.in(roomId).emit(ACTIONS.DISCONNECTED, {
@@ -76,7 +82,9 @@ io.on('connection', (socket) => {
 });
 
 app.use('/', (req, res) => {
-  res.send('hello');
+  console.log("ok7") ;
+  res.send(`hello ${PORT}`);
+  
 });
 
 server.listen(PORT, () => {
