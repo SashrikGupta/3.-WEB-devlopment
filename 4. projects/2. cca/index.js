@@ -4,11 +4,13 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 const cors = require('cors') ; 
-
+const dotenv = require('dotenv'); // Import dotenv
 
 
 app.use(bodyParser.json());
 app.use(cors())
+dotenv.config({ path: './config.env' });
+const PORT = process.env.PORT || 2982;
 var compiler = require('compilex');
 var options = { stats: true };
 compiler.init(options);
@@ -54,6 +56,6 @@ py_route.post('/', pyposthandel);
 
 app.use("/py_router", py_route);
 
-app.listen(8000, () => {
-    console.log("server has been started ");
+app.listen(PORT, () => {
+    console.log("server has been started " , PORT);
 });
