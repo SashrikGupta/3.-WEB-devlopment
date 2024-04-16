@@ -23,4 +23,6 @@ router.route('/userquerylist')
       .post(controller.getUserQuery)
 router.route('/users/all')
       .get(controller.getAllUsersSortedByPoints)
+router.route('/checkuser')
+      .post(controller.checkEmailIfExists)
 module.exports = router ;

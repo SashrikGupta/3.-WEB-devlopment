@@ -13,15 +13,15 @@ import 'codemirror/addon/edit/closetag';
 import 'codemirror/addon/edit/closebrackets';
 import './TextEditor.module.css'
 import codemirror from 'codemirror';
-
-
-
-
+import {useNavigate} from 'react-router-dom'
+import { curr_config } from '../../contexts/Conf';
+   // check values 
 
 
 
 export default function QueryPost() {
-
+  const now_config = useContext(curr_config) ; 
+  const navigate = useNavigate() ; 
   const cont = useContext(curr_context) ; 
   const bg  = cont.theme ; 
   const [mode , setmode] = useState('text/x-c++src') ; 
@@ -32,6 +32,21 @@ export default function QueryPost() {
   const [ed  , set_ed] = useState() ; 
   const [code , set_code] = useState() ; 
   const [ohm , set_ohm] = useState() ; 
+  const [formData , setFormData] = useState({
+    tag : '' , 
+    description : '' ,
+    problemStatement : '' ,
+    points : '' ,  
+  }) ; 
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -105,6 +120,48 @@ const handel_run = ()=>{
 
 
 
+
+
+
+
+const handlePost = () => {
+  console.log(ed.getValue())
+  console.log(formData)
+  
+   const back_key = now_config.back_key ; 
+
+  fetch(`${back_key}/query/post`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache',
+    },
+    body: JSON.stringify({
+       author : now_config.logged_in_userid , 
+       solver : "-/-" , 
+       problemStatement : formData.problemStatement , 
+       code : ed.getValue() , 
+       solution : "-/-" , 
+       points : formData.points ,  
+       tag : formData.tag , 
+       title : formData.description , 
+       status : "unsolved"
+    }),
+  })
+  navigate(`/solve-query`)
+
+};
+
+
+
+
+
+
+
+
+
+
+
   return (
     <>
     <div className='flex '>
@@ -134,23 +191,42 @@ const handel_run = ()=>{
                 </div>
                )}
 
-<hr  className=' mt-1 mb-2'/>
+<hr  className=' mt-1'/>
           </div>
-          <Card w='28vw' h='61vh' tailwind = 'shadow-lg' >
-          <textarea 
-          className='p-2 w-[28vw] h-[59vh] mt-[2vh] backdrop-blur-6xl rounded-lg placeholder:text-white hover:border-2 hover:border-[aqua]'
-          name="" 
-          id="" 
-          cols="30" 
-          rows="10"
-          placeholder="enter description of your question here"
-          style={{ background: ohm , backdropFilter: 'blur(10px)' }}
+          <label className = "flex w-[28vw] " htmlFor="tags">tags:</label>
+        <select
+          id="tag"
+          name="tag"
+           value={formData.tag}
+          onChange={handleInputChange}
+          className='h-[5vh] w-[28vw] backdrop-clur bg-white/10 border rounded-sm mb-4 '
+          required
         >
-        </textarea>
+          <option className='text-black' value="others">others</option>
+          <option className='text-black' value="machine learning">machine learning</option>
+          <option className='text-black' value="cyber security">cyber security</option>
+          <option className='text-black' value="web dev">web dev</option>
+          <option className='text-black' value="competetive">competetive</option>
+          <option className='text-black' value="acedemic">acedemic</option>
+        </select>
+          <Card w='28vw' h='61vh' tailwind = 'shadow-lg border-1 rounded-sm' >
+          <textarea 
+  className='p-2 w-[28vw] h-[59vh] mt-[2vh] backdrop-blur-6xl rounded-sm  placeholder:text-white hover:border-2 hover:border-[aqua] '
+  name="problemStatement" 
+  id="problemStatement" 
+  cols="30" 
+  rows="10"
+  value={formData.problemStatement}
+  onChange={handleInputChange}
+  placeholder="enter description of your question here"
+  style={{ background: ohm, backdropFilter: 'blur(10px)' }}
+/>
+
 
           </Card>
+          
+    
       </div>
-
       </Card>
 
       <div className='flex flex-col'>
@@ -163,6 +239,7 @@ const handel_run = ()=>{
             mode = {mode}
             run_btn = {run_btn}
             set = {set_ed}
+            
          >
          </TextEditor>
          </Card>
@@ -197,17 +274,25 @@ const handel_run = ()=>{
         <form>
           <div className="mb-3">
             <label for="recipient-name" className="col-form-label"> POINTS  </label>
-            <input type="text" className="form-control" id="recipient-name"/>
+            <input type="text" className="form-control" id="recipient-name"
+            name = "points"
+           value={formData.points}
+           onChange={handleInputChange}
+            />
           </div>
           <div className="mb-3">
             <label for="message-text" className="col-form-label"> Description </label>
-            <textarea className="form-control text-[2vh] h-[30vh]" id="message-text"></textarea>
+            <textarea className="form-control text-[2vh] h-[30vh]" id="message-text"
+            name = "description"
+           value={formData.description}
+           onChange={handleInputChange}
+            ></textarea>
           </div>
         </form>
       </div>
       <div className="modal-footer">
         <button className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button className="btn btn-danger"> post </button>
+        <button className="btn btn-danger" data-bs-dismiss="modal" onClick={handlePost}> post </button>
       </div>
     </div>
   </div>
@@ -215,3 +300,4 @@ const handel_run = ()=>{
     </>
   )
 }
+

@@ -4,13 +4,14 @@ const query = require('../models/query_model');
 // function to insert the user 
 exports.putone = async(req , res)=>{
    try{
-      await user.create(req.body) ; 
+     const {_id} =  await user.create(req.body) ; 
+
          res
              .status(201)
              .json({
                  status: 'SUCCESS',
                  data: {
-                     user : req.body 
+                     user : _id
                  }
              })
       }
@@ -31,8 +32,8 @@ exports.follow = async (req, res) => {
   try {
     const followerName = req.body.f1;
     const followingName = req.body.f2;
-    const sender = await user.findOne({ username: followerName });
-    const receiver = await user.findOne({ username: followingName });
+    const sender = await user.findById(req.body.f1)
+    const receiver = await user.findById(req.body.f2);
     if (!sender)   return res.status(404).json({ status: 'FAILED', message: 'Sender not found' });
     if (!receiver) return res.status(404).json({ status: 'FAILED', message: 'Receiver not found' });
     
@@ -174,4 +175,26 @@ exports.getAllUsersSortedByPoints = async (req, res) => {
        console.error('Error in getting users sorted by points:', error);
        res.status(500).json({ status: 'FAILED', message: 'Internal Server Error' });
    }
+};
+
+
+
+exports.checkEmailIfExists = async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    // Check if a user with the specified email exists
+    const existingUser = await user.findOne({ email });
+
+    if (existingUser) {
+      // If user with email already exists
+      return res.status(200).json({ status: 'FAILED', message: 'Email already exists', userId: existingUser._id });
+    } else {
+      // If user with email does not exist
+      return res.status(200).json({ status: 'SUCCESS', message: 'Email available' });
+    }
+  } catch (error) {
+    console.error('Error in checking email existence:', error);
+    return res.status(500).json({ status: 'FAILED', message: 'Internal Server Error' });
+  }
 };

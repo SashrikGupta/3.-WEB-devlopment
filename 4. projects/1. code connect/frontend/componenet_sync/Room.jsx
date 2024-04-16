@@ -20,11 +20,12 @@ import { useLocation } from 'react-router-dom';
 import SyncEditor from './SyncEditor';
 import { IoIosSend } from "react-icons/io";
 import Message from './Message';
-
-
+import { curr_config } from '../contexts/Conf';
 
 export default function Room() {
 
+  const navigate = useNavigate() ; 
+  const now_config = useContext(curr_config) ; 
   const [chat_list , set_chat_list] = useState([])
   const [my_chat , set_my_chat] = useState() 
   const [message_enter , set_message_enter] = useState(0) ; 
@@ -236,7 +237,24 @@ const handel_run = ()=>{
   setrun_btn(!run_btn) ; 
 }
 
+function solvehandler(){
+ const back_key = now_config.back_key ; 
+  fetch(`${back_key}/query/solve`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache',
+    },
+    body: JSON.stringify({
+      sol : ed.getValue , 
+      io : "-/-" ,
+      uid : now_config.logged_in_userid , 
+      qid : id
+    })
 
+  })
+  navigate(`/${now_config.logged_in_userid}`) 
+}
 
   return (
     <>
@@ -296,7 +314,7 @@ const handel_run = ()=>{
             <input className='rounded-lg bg-white/10 text-[2vh] text-center w-[31vw]' placeholder = "enter a query id here "></input>
             <span>
             <button onClick = {()=>{handel_run()}} className='btn btn-success text-[2vh] h-[5vh] w-[6vw] py-0' > run </button>
-           <button  class="btn bg-[aqua] text-black text-[2vh] h-[5vh] w-[6vw] py-0" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-theme="dark">solved</button>
+           <button  class="btn bg-[aqua] text-black text-[2vh] h-[5vh] w-[6vw] py-0" onClick = {solvehandler}>solved</button>
             </span>
           </div>
           <div className='w-[65vw] flex justify-around items-center'>
@@ -313,32 +331,6 @@ const handel_run = ()=>{
 
    
 
-<div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div className={`modal-dialog`}>
-    <div className={`modal-content  backdrop-blur bg-gray-800 text-[2vh]`}>
-      <div className="modal-header">
-        <p className="modal-title fs-5" id="exampleModalLabel"> sending the query ... </p>
-        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div className="modal-body text-[2vh]">
-        <form>
-          <div className="mb-3">
-            <label for="recipient-name" className="col-form-label"> POINTS  </label>
-            <input type="text" className="form-control" id="recipient-name"/>
-          </div>
-          <div className="mb-3">
-            <label for="message-text" className="col-form-label"> Description </label>
-            <textarea className="form-control text-[2vh] h-[30vh]" id="message-text"></textarea>
-          </div>
-        </form>
-      </div>
-      <div className="modal-footer">
-        <button className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button className="btn btn-danger"> post </button>
-      </div>
-    </div>
-  </div>
-</div>
     </>
   )
 }

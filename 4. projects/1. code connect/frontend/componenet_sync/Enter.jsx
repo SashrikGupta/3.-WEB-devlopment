@@ -35,11 +35,16 @@ export default function Enter() {
             <img className="h-[11vh] rounded-lg border" src="../public/logo.png" alt="Logo" />
             <div style = {{border : "1px solid white" , heigth : "14vh"}}></div>
             <h1 className="fs-[bold]" style={{ fontSize: "5vh"  , fontWeight : "bold"}}>Code... <br /> ....Connect</h1>
+            
             <hr /><hr />
+            
           </div>
+          
           <hr className="mt-4" />
           <hr />
-          <div className="h-[40vh] w-[50vh] flex flex-col justify-center items-center">
+          <div className='mt-3 w-[50vh] flex justify-center'> you <span style = {{color : "aqua"}}> &nbsp;code </span>&nbsp;we <span style = {{color : "aqua"}}> &nbsp;connect </span></div>
+          <div className="h-[30vh] w-[50vh] flex flex-col justify-center items-center">
+        
             <div className='mt-2'>
               Enter your room ID:
               <input

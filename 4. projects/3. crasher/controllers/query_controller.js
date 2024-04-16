@@ -53,6 +53,7 @@ exports.postQuery = async (req, res) => {
             status: 'FAILED',
             message: error.message
         });
+        console.log(error) ; 
     }
 };
 

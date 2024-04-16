@@ -7,7 +7,7 @@ import styles from "./UserCard.module.css";
 import QBC from '../CodeChart/QBC';
 import { useParams } from 'react-router-dom';
 import { curr_config } from '../../contexts/Conf';
-
+import { useNavigate } from 'react-router-dom';
 function formating(dateString) {
   let dateObject = new Date(dateString);
   let formattedDate = dateObject.toISOString().split('T')[0];
@@ -15,13 +15,39 @@ function formating(dateString) {
 }
 
 export default function UserCard() {
+
+
+
+  const { id } = useParams();
+  const [user, set_user] = useState({});
+  const [dates, set_dates] = useState([]);
+
+  if(!id){
+    //redirect 
+    navigate(`/login`)
+  }
+ 
+  const now_config = useContext(curr_config);
+  const logged_in_userid = now_config.logged_in_userid
+  const back_key = now_config.back_key;
+  const user_detail = now_config.user ; 
+
+  const navigate = useNavigate() ;
+
+  if(!now_config.logged_in_userid){
+    //redirect 
+    navigate(`/login`)
+  }
+
+
+
   const [name, set_name] = useState("Sashrik");
   const [points , set_points] = useState(500) ; 
   const [nickname, set_nickname] = useState("sash🫠");
   const [year, set_year] = useState("2nd year");
   const [tag, set_tag] = useState("react_dev");
   const [raiting, set_raiting] = useState("65476693534756");
-  const [link, set_link] = useState(null || "https://source.unsplash.com/random/?blue");
+  const [link, set_link] = useState("https://source.unsplash.com/random/?blue");
   const [n_query, set_n_query] = useState([
     { category: 'Total query', value: 5 },
     { category: 'query solved', value: 3 },
@@ -40,7 +66,7 @@ export default function UserCard() {
    //comp , webdev , academic , machinelearning , cyber , others 
   const [temp_obj , set_temp_obj] = useState({}) ; 
   const [temp_obj_2 , set_temp_obj_2] = useState({}) ; 
-
+  
     let startDate = moment().add(-365, 'days');
     let dateRange = [startDate, moment().add(1, 'days')];
   
@@ -57,7 +83,8 @@ export default function UserCard() {
       };
     })
   );
-   
+  
+  const [follower_list , set_followe_list] = useState([]) ; 
 
 
   
@@ -69,14 +96,21 @@ export default function UserCard() {
 
 
 
- // Assuming it's a boolean, modify as needed
-  
-  const now_config = useContext(curr_config);
-  const back_key = now_config.back_key;
-  const { id } = useParams();
-  const [user, set_user] = useState({});
-  const [dates, set_dates] = useState([]);
+ //
 
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
   const [you, set_you] = useState(now_config.logged_in_userid == id);
@@ -126,8 +160,9 @@ export default function UserCard() {
    set_raiting(user.rating) ; 
    set_str(user.description) ; 
    set_points(user.points) ; 
+   
    if(user.followed) set_followed(user.followed.length) ;
-   if(user.following) set_following(user.following.length) 
+   if(user.following){ set_following(user.following.length)  ; set_followe_list(user.following)}
    
      
  }, [dates]); // Include startDate in the dependency array
@@ -234,6 +269,21 @@ export default function UserCard() {
 //------------------------------------------------------------------------------
 
 
+function followhandler(){
+  
+  fetch(`${back_key}/follow` , {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache',
+    },
+    body: JSON.stringify({ f1 : now_config.logged_in_userid  , f2 : id }),
+  })
+    .catch(error => console.error('Error fetching data:', error));
+}
+
+
+
   return (
     <div className = "flex flex-row">
 
@@ -261,7 +311,8 @@ export default function UserCard() {
                style={{
                   width : '15vw',
                   height : '40vh' , 
-                  backgroundImage : `url(${link})`
+                  backgroundImage : `url(${link})`,
+                  backgroundSize : 'cover'
                }}
             >
              </div>   
@@ -370,7 +421,11 @@ export default function UserCard() {
                    followed by : {followed}<br></br>
                    avergae raiting : {raiting}<br></br>
                    posts : {post} <br></br>
-                   {you ? <></> :  <button className = "btn bg-[aqua] h-[1.5em] w-[10em] flex justify-center items-center "> follow  </button>}
+                   {user && !you && !follower_list.includes(id) && (
+  <button className="btn bg-[aqua] h-[1.5em] w-[10em] flex justify-center items-center" onClick={followhandler}>
+    Follow
+  </button>
+)}
                    </p>
                   </div>
                   

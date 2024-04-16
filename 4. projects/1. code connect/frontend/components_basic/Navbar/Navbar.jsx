@@ -43,7 +43,7 @@ const Navbar = (props) => {
                       </div>
                     )}
                   </div>
-                  <a href="#" className="text-gray-300 h-[4.5vh] my-1 flex items-center hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">blog</a>
+                  <Link to="/blog" className="text-gray-300 h-[4.5vh] my-1 flex items-center hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">blog</Link>
                 </div>
               </div>
             </div>
