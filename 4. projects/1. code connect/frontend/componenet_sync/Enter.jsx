@@ -32,7 +32,7 @@ export default function Enter() {
       <div className="flex h-[90vh]">
         <Card w="55vh" h="60vh" tailwind="m-[auto] shadow-lg">
           <div className="flex h-[11vh] w-[50vh] justify-around">
-            <img className="h-[11vh] rounded-lg border" src="../public/logo.png" alt="Logo" />
+            <img className="h-[11vh] rounded-lg border" src="./logo.png" alt="Logo" />
             <div style = {{border : "1px solid white" , heigth : "14vh"}}></div>
             <h1 className="fs-[bold]" style={{ fontSize: "5vh"  , fontWeight : "bold"}}>Code... <br /> ....Connect</h1>
             

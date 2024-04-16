@@ -4,7 +4,7 @@ export const curr_config = createContext();
 
 export default function Config(props) {
   const [logged_in_userid, sliu] = useState(null);
-  const back_key = "http://localhost:1934";
+  const back_key = "https://gamma-1.onrender.com";
   const sync_key = "https://mern-stack-devlopment.vercel.app/";
   const [user, set_user] = useState(null);
 

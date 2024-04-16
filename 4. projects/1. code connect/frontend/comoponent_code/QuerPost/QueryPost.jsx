@@ -85,7 +85,7 @@ useEffect(() => {
       console.log(code) ; 
 
       try {
-        const response = await fetch("http://localhost:8000/py_router/", {
+        const response = await fetch("https://gamma-2.onrender.com/py_router/", {
           method: 'POST',
           body: JSON.stringify({
             code: code , 

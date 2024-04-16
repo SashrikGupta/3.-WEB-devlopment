@@ -14,7 +14,9 @@ mongoose
     .catch((err)=>console.log("mongo error"))
 
 
-
+app.use('/' , (req , res)=>{
+    res.send("hello")
+})
 
 app.listen(PORT, (req, res) => {
     console.log("server has been started at port: " + PORT  + ` created on : ${moment().format('YYYY-MM-DD')}`);

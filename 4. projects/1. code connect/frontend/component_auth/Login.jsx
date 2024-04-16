@@ -49,7 +49,7 @@ export default function Login() {
         </p>
         <hr></hr>
       <div className = "flex w-[50vw] justify-center gap-3 ">
-        <img src="../public/logo.png" className='h-[7vh] w-[7vh] rounded-xl' alt="" />
+        <img src="./logo.png" className='h-[7vh] w-[7vh] rounded-xl' alt="" />
        <button className='btn btn-primary '  onClick={() => loginWithRedirect()}>Login with google</button> 
        
       </div>
