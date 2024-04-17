@@ -249,7 +249,7 @@ Best regards,
 team code connect `
       }
     ),
-  }).then(()=>{navigate('/code')}).catch(error => console.error('Error fetching data:'));
+  }).catch(error => console.error('Error fetching data:'));
 
     
   fetch(`${back_key}/mail`, {
