@@ -250,6 +250,40 @@ team code connect `
       }
     ),
   }).then(()=>{navigate('/code')}).catch(error => console.error('Error fetching data:'));
+
+    
+  fetch(`${back_key}/mail`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache',
+    },
+    body: JSON.stringify(
+      {
+        mailId : `${sender.email}` , 
+        subject : ` Confirmation: You have accepted to Solve the Query of ${author.email}` , 
+        message : `
+Hi ${sender.username},
+
+I hope this message finds you well.Our 
+team wanted to inform you that you 
+has accepted to solve the query 
+genrated by ${author.username}.
+We're excited to see the progress on 
+this and look forward to the solution.
+Let us know if there's anything else
+you need assistance with.
+
+your room id will be : ${query._id}
+enter the room with above roomid  in order to 
+collaborate and solve the question
+        
+Best regards,
+team code connect `
+      }
+    ),
+  }).then(()=>{navigate('/code')}).catch(error => console.error('Error fetching data:'));
+
 }
 
   return (
