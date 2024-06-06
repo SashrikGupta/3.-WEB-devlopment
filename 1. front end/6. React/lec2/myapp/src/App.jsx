@@ -3,7 +3,7 @@ import Navbar from './components/Navbar';
 import TextFrom from './components/TextFrom';
 import Hold from './components/Hold' ; 
 import { useState } from 'react';
-
+import Mtb from './components/Mtb';
 function App() {
 
   const handler = (event)=>
@@ -31,13 +31,7 @@ function App() {
   
   return (
     <>
-    <Navbar id = "ok" title_name = "Text Utils" about_text = "about " drop_name="sashrik" bod = {bod} theme = {theme}/>
-    <div className="container">
-      <Hold message = "mai console me print hunga " pni = "inside a container named hold" styles = {{padding:'7px'}}>
-      <TextFrom heading  = "enter your text below " texter = "45" handler = {(event)=>{handler(event)}}/>
-      </Hold>
-    
-    </div>
+     <Mtb/>
     </> 
   );
 }
