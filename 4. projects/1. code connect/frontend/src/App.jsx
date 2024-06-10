@@ -18,6 +18,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { curr_config } from '../contexts/Conf';
 import { useEffect  , useContext , createContext} from 'react';
 import Blog from '../components_basic/Blog/Blog';
+import Redirect from '../components_basic/Redirect/Redirect';
 
 function App() {
   const now_config = useContext(curr_config) ; 
@@ -64,6 +65,7 @@ function App() {
       <BG>
           {shouldRenderNavbar && <Navbari />}
           <Routes>
+           <Route path=   "/"                  element = { <Redirect/>  } />
            <Route path=   "/signup"            element = { <Signup/>    } />
            <Route path=   "/settings"          element = { <Settings /> } /> 
            <Route path=   "/solve-query"       element = { <Querylist/> } /> 
