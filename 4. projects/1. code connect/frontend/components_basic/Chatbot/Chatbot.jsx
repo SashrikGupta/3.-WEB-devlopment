@@ -29,7 +29,7 @@ const Chatbot = () => {
     const userMessage = { name: "User", message: inputValue };
     setMessages([...messages, userMessage]);
      document.getElementById('oj').value = ''
-    fetch('http://127.0.0.1:5000/predict', {
+    fetch('https://chatbot-ydma.onrender.com/predict', {
       method: 'POST',
       body: JSON.stringify({ message: inputValue }),
       mode: 'cors',
