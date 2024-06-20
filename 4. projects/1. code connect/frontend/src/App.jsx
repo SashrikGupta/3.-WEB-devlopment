@@ -19,6 +19,8 @@ import { curr_config } from '../contexts/Conf';
 import { useEffect  , useContext , createContext} from 'react';
 import Blog from '../components_basic/Blog/Blog';
 import Redirect from '../components_basic/Redirect/Redirect';
+import Chatbot from '../components_basic/Chatbot/Chatbot'
+
 
 function App() {
   const now_config = useContext(curr_config) ; 
@@ -78,7 +80,7 @@ function App() {
            <Route path=   '/login'             element = { <Login/>     } />
            <Route path=   '/blog'              element = { <Blog/>      } /> 
           </Routes>
-        
+          <Chatbot/>
       </BG>
       
 
