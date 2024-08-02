@@ -80,7 +80,7 @@ function App() {
            <Route path=   '/login'             element = { <Login/>     } />
            <Route path=   '/blog'              element = { <Blog/>      } /> 
           </Routes>
-          <Chatbot/>
+
       </BG>
       
 
